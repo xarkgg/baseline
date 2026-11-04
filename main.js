@@ -135,6 +135,4 @@
 
   function tick() { if (!paused) activate(active + 1, false); }
   setInterval(tick, INTERVAL);
-
-  document.getElementById("year").textContent = new Date().getFullYear();
 })();

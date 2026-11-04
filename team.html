@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The team — Baseline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Meet the people behind Baseline." />
+  <meta property="og:title" content="The team — Baseline" />
+  <meta property="og:description" content="Meet the people behind Baseline." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23101010' d='M16 3c5 0 12 3 12 10.5S21 29 14 29 3 22 3 15 8 3 16 3z'/%3E%3Crect x='9' y='14' width='12' height='3' rx='1.5' fill='%23f3f0e9'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#stack">Skip to team</a>
+
+  <header class="site-header">
+    <a class="mark" href="index.html" aria-label="Baseline — home">
+      <span class="mark-blob"><span class="mark-slit"></span></span>
+      <span class="mark-word">baseline</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="team.html" aria-current="page">Team</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="stack-wrap">
+    <p class="kicker">the people behind the work — tap a name, or just watch it roll</p>
+    <section id="stack" class="stack" aria-label="Team members">
+      <!-- cards rendered by main.js -->
+    </section>
+    <nav class="stackctrl" aria-label="Browse team members">
+      <button class="ctrl" id="prev" type="button" aria-label="Previous member">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 18.3 9 12.5l5.7-5.8 1.4 1.4-4.3 4.4 4.3 4.4z" fill="currentColor"/></svg>
+      </button>
+      <div class="dots" id="dots"></div>
+      <button class="ctrl" id="next" type="button" aria-label="Next member">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.3 5.7 15 11.5l-5.7 5.8-1.4-1.4 4.3-4.4-4.3-4.4z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </main>
+
+  <footer class="bottom">
+    <p>© Baseline</p>
+    <p><a href="work.html">Selected work →</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
