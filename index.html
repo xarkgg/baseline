@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Team — Baseline</title>
+  <meta name="description" content="Meet the team behind Baseline." />
+  <meta property="og:title" content="Our Team — Baseline" />
+  <meta property="og:description" content="Meet the team behind Baseline." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d3b66'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-weight='700' font-size='13' fill='white' text-anchor='middle'%3Eba%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#stack">Skip to team</a>
+
+  <header class="top">
+    <a class="brand" href="/">baseline</a>
+    <span class="top-label">— the team</span>
+  </header>
+
+  <main>
+    <p class="kicker">The people behind the work</p>
+    <section id="stack" class="stack" aria-label="Team members">
+      <!-- cards rendered by main.js -->
+    </section>
+    <nav class="stackctrl" aria-label="Browse team members">
+      <button class="ctrl" id="prev" type="button" aria-label="Previous member">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 18.3 9 12.5l5.7-5.8 1.4 1.4-4.3 4.4 4.3 4.4z" fill="currentColor"/></svg>
+      </button>
+      <div class="dots" id="dots"></div>
+      <button class="ctrl" id="next" type="button" aria-label="Next member">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.3 5.7 15 11.5l-5.7 5.8-1.4-1.4 4.3-4.4-4.3-4.4z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </main>
+
+  <footer class="bottom">
+    <p>© <span id="year"></span> Baseline</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
