@@ -2,10 +2,13 @@
 
 The Baseline organization site. Static, dependency-free, no build step.
 
-Design language: bold black organic shapes (+ one solid mark — an ink blob
-with a "baseline" slit) on warm off-white, with handwritten-leaning type
-(Shantell Sans, self-hosted OFL) for display text and Duolingo-grade friendly
-microcopy. Lots of negative space.
+Design language: bold black organic shapes on warm off-white, with
+handwritten-leaning type (Shantell Sans, self-hosted, OFL) for display text
+and friendly microcopy. Lots of negative space.
+Logo: `assets/mark.png` — hand-drawn "person with raised arms inside ink
+rings" mark (supplied by the team, processed from source art onto
+transparency). The spherical blob works as compositional accent elsewhere
+(the `.trio` bullets).
 
 ## Pages
 

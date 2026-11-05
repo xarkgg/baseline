@@ -61,24 +61,13 @@ body {
   color: var(--ink);
   text-decoration: none;
 }
-.mark-blob {
-  width: 2.4rem;
-  height: 2.4rem;
-  background: var(--ink);
-  border-radius: 52% 48% 61% 39% / 55% 46% 54% 45%;
-  display: grid;
-  place-items: center;
-  transform: rotate(-8deg);
-  transition: border-radius 1.2s var(--ease);
+.mark-img {
+  width: 2.55rem;
+  height: auto;
+  display: block;
+  transition: transform 0.6s var(--ease);
 }
-.mark:hover .mark-blob { border-radius: 44% 56% 38% 62% / 46% 58% 42% 54%; }
-.mark-slit {
-  width: 1.15rem;
-  height: 0.28rem;
-  background: var(--paper);
-  border-radius: 999px;
-  transform: rotate(6deg);
-}
+.mark:hover .mark-img { transform: rotate(-7deg) scale(1.05); }
 .mark-word {
   font-family: var(--display);
   font-weight: 800;
@@ -167,20 +156,15 @@ body {
   color: var(--ink-2);
 }
 
-.hero-blob {
-  width: min(46vw, 21rem);
-  aspect-ratio: 1;
-  position: relative;
-  margin-left: clamp(0rem, 22vw, 16rem);
+.hero-mark {
+  width: min(58vw, 24rem);
+  height: auto;
+  margin-left: clamp(0rem, 20vw, 14rem);
+  animation: drift 9s ease-in-out infinite alternate;
 }
-.hero-blob .mark-slit {
-  position: absolute;
-  left: 18%;
-  right: 30%;
-  top: 52%;
-  height: clamp(0.6rem, 3vw, 1.1rem);
-  width: auto;
-  border-radius: 999px;
+@keyframes drift {
+  from { transform: rotate(-2deg) translateY(4px); }
+  to   { transform: rotate(3deg) translateY(-6px); }
 }
 
 .cta {
@@ -507,7 +491,7 @@ main.stack-wrap {
 /* ---------- responsive ---------- */
 
 @media (max-width: 34rem) {
-  .hero-blob { margin-left: 12vw; }
+  .hero-mark { margin-left: 10vw; }
   .row { padding: 1.2rem 0.2rem; }
 }
 
@@ -517,7 +501,8 @@ main.stack-wrap {
   html { scroll-behavior: auto; }
   .card { animation: none; }
   .blob { animation: none; }
-  .mark-blob { transition: none; }
+  .hero-mark { animation: none; }
+  .mark-img { transition: none; }
   .card, .openbody, .twisty, .banner .advance, .ctrl, .dotbtn, .links a, .cta, .row {
     transition-duration: 0.01ms;
   }
