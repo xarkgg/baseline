@@ -14,7 +14,7 @@ transparency). The spherical blob works as compositional accent elsewhere
 
 | Page | File | What |
 | --- | --- | --- |
-| Home | `index.html` | "Groundwork first." hero, one morphing blob, three statements |
+| Home | `index.html` | "Groundwork first." hero, one morphing blob, three statements, closing identity section ("The Engineering Standard.") |
 | Team | `team.html` | The card-stack flow: one member expanded at a time, chips around it, auto-cycles 3.8s, pauses on interaction, prev/next + dots. Colleagues' card stack modeled on a **@glow dsgn** showcase video |
 | Work | `work.html` | Real shipped/selected projects with links |
 | Contact | `contact.html` | Direct links — no forms |
