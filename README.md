@@ -14,7 +14,13 @@ the hand-made language, and display type stays calligraphic, never geometric.
 Logo: `assets/mark.png` — hand-drawn "person with raised arms inside ink
 rings" mark (supplied by the team, processed from source art onto
 transparency). The spherical blob works as compositional accent elsewhere
-(the `.trio` bullets).
+(the `.trio` bullets). Derived assets, all palette-quantized PNG:
+`favicon.png` (64px, tab icon), `apple-touch-icon.png` (180px), and
+per-page share cards `og-image.png` (home/404/case), `og-team.png`,
+`og-work.png` — 1200×630 each. `robots.txt` exists; `sitemap.xml` and
+canonical URLs wait on the production domain (add both when known).
+`vercel.json` sets security headers (nosniff, frame-deny, referrer,
+permissions) and is otherwise zero-config.
 
 ## Pages
 
