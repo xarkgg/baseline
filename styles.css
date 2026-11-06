@@ -1,4 +1,12 @@
-/* Baseline — team stack (flow modeled on @glow dsgn's card-stack showcase) */
+/* Baseline — team stack (flow modeled on @glow dsgn's card-stack showcase)
+ *
+ * Brand DNA — applies to ICONS AND TEXT TOO:
+ * Playful abstract human figure silhouettes, drawn with bold organic shapes;
+ * exaggerated proportions, irregular contours, expressive movement.
+ * Practically: no perfect circles or straight edges where a blob, a tilt or
+ * a curve can do the job; arrows/chevrons/bullets follow the hand-made
+ * language; display type stays calligraphic (Shantell Sans), never geometric.
+ */
 
 * { box-sizing: border-box; }
 
@@ -16,7 +24,7 @@
   --card: #ffffff;
   --ink: #101010;
   --ink-2: #55524b;
-  --ink-3: #8f8b82;
+  --ink-3: #6a665d;
   --line: rgba(16, 16, 16, 0.08);
   --display: "Shantell Sans", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
   --radius: 26px;
@@ -269,6 +277,86 @@ body {
   font-weight: 800;
 }
 .page .lede { margin: 0 0 2.5rem; color: var(--ink-2); max-width: 38ch; }
+
+/* ---------- case study template ---------- */
+
+.case-back { margin: 0 0 0.4rem; font-size: 0.9rem; font-weight: 600; }
+.case-back a { color: var(--ink-2); text-decoration: none; }
+.case-back a:hover { color: var(--ink); }
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.4rem 0 1.2rem;
+}
+.case-meta span {
+  padding: 0.32rem 0.85rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--chip-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--card);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.8rem;
+  margin: 0 0 1.8rem;
+}
+.case-links a {
+  color: var(--ink);
+  font-weight: 700;
+  font-family: var(--display);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+.case-links a:hover { text-decoration-style: double; }
+
+.case-fig {
+  margin: 0.4rem 0 2.4rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+.case-fig figcaption {
+  padding: 0.6rem 1.1rem 0.7rem;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  border-top: 2px solid var(--ink);
+}
+.case-slot {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  padding: 0 1.5rem;
+}
+.case-slot-tall { aspect-ratio: 4 / 3; }
+
+.case-body h2 {
+  margin: 2.6rem 0 0.7rem;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  letter-spacing: -0.01em;
+}
+.case-body h2:first-of-type { margin-top: 0; }
+.case-body p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.case-body p + p { margin-top: 0.8rem; }
+.case .cta { margin-top: 2.8rem; }
 
 .rows { border-top: 2px solid var(--ink); }
 .row {
@@ -535,6 +623,45 @@ main.stack-wrap {
 }
 .dotbtn[aria-current="true"] { background: var(--ink); transform: scale(1.25); }
 .dotbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* no-JS fallback (shown via <noscript> on team.html) */
+.team-fallback {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  max-width: var(--wrap);
+}
+.team-fallback li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 1rem;
+  align-items: center;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--chip-radius);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+.tf-photo {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  grid-column: 1;
+  grid-row: 1 / 4;
+}
+.tf-name { font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
+.tf-role { color: var(--ink-2); font-size: 0.95rem; }
+.tf-links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0.2rem 1.1rem; padding-top: 0.35rem; }
+.tf-links a {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 
 /* ---------- responsive ---------- */
 
