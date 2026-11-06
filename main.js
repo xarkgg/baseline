@@ -44,7 +44,7 @@
       chip.innerHTML =
         '<span class="avatar">' + (m.photo ? "<img src=\"" + m.photo + "\" alt=\"\">" : initials(m.name)) + "</span>" +
         '<span class="chipmeta"><span class="chipname"></span><span class="chiprole"></span></span>' +
-        '<span class="twisty" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15.7 5.7 9.4l1.4-1.4L12 12.9l4.9-4.9 1.4 1.4z" fill="currentColor"/></svg></span>';
+        '<span class="twisty" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15.9 C 10 14 7.9 11.6 6.8 9.3 M12 15.9 C 14 14 16.1 11.6 17.2 9.3" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg></span>';
       chip.querySelector(".chipname").textContent = m.name;
       chip.querySelector(".chiprole").textContent = m.role;
       chip.addEventListener("click", function () { if (i !== active) { activate(i, true); unpauseSoon(); } else { paused = true; resumeSoon(); } });
@@ -58,7 +58,7 @@
             (m.photo ? '<img src="' + m.photo + '" alt="">' : "") +
             '<span class="banner-initials">' + initials(m.name) + "</span>" +
             '<span class="banner-caption"><span class="banner-name"></span><span class="banner-role"></span></span>' +
-            '<button class="advance" type="button" aria-label="Next member"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.3 5.7 15 11.5l-5.7 5.8-1.4-1.4 4.3-4.4-4.3-4.4z" fill="currentColor"/></svg></button>' +
+            '<button class="advance" type="button" aria-label="Next member"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.4 5.7 C 12.3 7.6 14.8 9.7 15.5 11.8 C 14.9 14.1 12.5 16.3 9.2 18.4" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
           "</div>" +
           '<div class="info">' +
             "<p class=\"bio\"></p>" +

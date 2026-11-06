@@ -384,6 +384,14 @@ body {
   border-radius: 46% 54% 57% 43% / 52% 44% 56% 48%;
 }
 .row-arrow { font-size: 1.4rem; line-height: 1; }
+.gl {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.15em;
+  overflow: visible;
+}
+.row-arrow .gl { width: 1.6rem; height: 1.6rem; vertical-align: middle; }
 
 /* ---------- contact ---------- */
 
