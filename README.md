@@ -3,17 +3,24 @@
 The Baseline organization site. Static, dependency-free, no build step.
 
 Structure: an editorial scroll — full-viewport hero, then a long story column
-of centred text with generous empty space, an inverted black section, a
+of centred text with generous empty space, a light inversion mid-page, a
 contributors list, and a closing call. The layout is a homage to the Wabi
-launch page (light editorial canvas, one measured column of text, a
-hand-made annotation layer).
+launch page (one measured column of text, generous empty space, a hand-made
+annotation layer), re-toned to a dark canvas.
+
+Palette (set 2026-11-06): background `#171817`, primary text `#f9f9f9`,
+highlight `#a9a8a8`. Everything else is derived from those three: a neutral
+ramp for surfaces and secondary text, one light inversion (`#f9f9f9` ground,
+white cards) that carries the contrast rhythm, and a single accent
+(`--accent #7aa2ff`) for links and emphasis.
 
 Brand DNA — applies to ICONS AND TEXT TOO: playful abstract human figure
 silhouettes, drawn with bold organic shapes; exaggerated proportions,
 irregular contours, expressive movement. In practice: arrows, chevrons and
 underlines are hand-drawn SVG (`.gl`, `.hero-underline`), running-text
-emphasis uses the serif italic in blue (`.em`), and highlights use a yellow
-marker swipe (`.hl`).
+emphasis uses the serif italic in the accent colour (`.em`), highlights use a
+`#a9a8a8` marker swipe with dark text on top (`.hl`), and the figure motif
+itself repeats as an animated band (`.figures`, see the Motif note below).
 
 Type: **Instrument Serif** (high-contrast display serif) over **Inter**
 (neutral grotesque), both self-hosted OFL. A commercial licence for Arista Pro
@@ -21,12 +28,23 @@ or Kalice + Selecta would be a drop-in: swap the `@font-face` sources and
 `--serif` in `styles.css` and nothing else changes. Do not ship the Arista Pro
 trial files from dafont — those are personal-use only.
 
-Logo: `assets/mark.png` — hand-drawn "person with raised arms inside ink
-rings" mark (supplied by the team). Derived assets are palette-quantized:
-`favicon.png` (64px), `apple-touch-icon.png` (180px), and per-page share cards
+Logo: `assets/mark.png` (dark) and `assets/mark-light.png` (light) — the
+hand-drawn "person with raised arms inside rings" mark, keyed from the team's
+supplied artwork. Derived assets, all palette-quantized: `favicon.png` (64px,
+light — a dark favicon vanishes in a dark browser tab), `apple-touch-icon.png`
+(180px, light mark on the brand ground), and per-page share cards
 `og-image.png` (home), `og-work.png`, `og-contact.png` — 1200×630 each.
 `robots.txt` exists; `sitemap.xml` and canonical URLs wait on the production
 domain. `vercel.json` sets security headers and is otherwise zero-config.
+
+Motif: `assets/runners-light.png` / `assets/runners-ink.png` — the four-figure
+running pack, keyed from the team's artwork. `.figures` tiles it with
+`background` and drifts exactly one tile per cycle (`figure-drift`, 56s) so the
+loop is seamless; it stops under `prefers-reduced-motion`. Three placements:
+a faint watermark under the hero (`.hero-figures`), and a band (`.band`)
+opening the people section and sitting under the closing CTA. On light ground
+the band swaps to the ink sprite automatically (`.invert .figures`). To
+re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 
 ## Pages
 
@@ -68,6 +86,11 @@ at the new page.
   (currently `kuskomanass@gmail.com`; swap when the team mailbox exists).
 - **Motion:** `main.js` only does scroll-reveal for `.reveal`; it is progressive
   (the `.js` class is set inline in `<head>`, so nothing hides without JS).
+- **Motif bands:** drop `<div class="figures" aria-hidden="true"></div>` where
+  you want one; use `<div class="band">…</div>` when it needs its own strip of
+  surface and rules. Sizing and tint are CSS variables on `.figures`.
+- **Palette:** every colour lives in `:root` in `styles.css`. To re-tone the
+  site, change `--bg` / `--ink` / `--highlight` and the derived ramp follows.
 
 ## Deploys
 

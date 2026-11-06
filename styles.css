@@ -1,18 +1,18 @@
-/* Baseline — editorial story site.
+/* Baseline — editorial story site (dark).
  *
- * Visual language: light editorial canvas, generous empty space, one measured
- * column of text per section, elegant display serif against a neutral
- * grotesque, and a hand-made annotation layer (doodles, arrows, underlined
- * emphasis) that follows the brand DNA below.
+ * Visual language: near-black canvas, one measured column of text per section,
+ * a high-contrast display serif against a neutral grotesque, and a hand-made
+ * annotation layer. One light inversion mid-page carries the contrast rhythm.
+ *
+ * Palette (user-set 2026-11-06):
+ *   background      #171817
+ *   primary text    #f9f9f9
+ *   highlight       #a9a8a8
+ * plus a neutral ramp derived from those three, and one accent.
  *
  * Brand DNA — applies to ICONS AND TEXT TOO:
  * Playful abstract human figure silhouettes, drawn with bold organic shapes;
  * exaggerated proportions, irregular contours, expressive movement.
- *
- * Display type is a high-contrast serif (Instrument Serif, OFL) as a stand-in
- * for Arista Pro / Kalice, which are commercial. To swap: replace the
- * @font-face sources and --serif, nothing else. Emphasis in running text uses
- * the serif italic in --blue; annotation marks live in .doodle / .gl.
  */
 
 * { box-sizing: border-box; }
@@ -40,14 +40,28 @@
 }
 
 :root {
-  --paper: #f0f0f0;
-  --white: #ffffff;
-  --ink: #191919;
-  --ink-2: #5c5c5c;
-  --ink-3: #8a8a8a;
-  --line: #e3e3e3;
-  --blue: #246bfe;
-  --highlight: #ffd400;
+  /* the three set colours */
+  --bg: #171817;
+  --ink: #f9f9f9;
+  --highlight: #a9a8a8;
+
+  /* derived neutral ramp (light on dark) */
+  --surface: #1f201f;   /* raised: cards, figures, fields */
+  --surface-2: #262726; /* raised again: nested cards */
+  --ink-2: #b7b8b7;     /* secondary text   ~9.0:1 on --bg */
+  --ink-3: #8e8f8e;     /* tertiary text    ~5.4:1 on --bg */
+  --line: rgba(249, 249, 249, 0.14);
+
+  /* the light inversion (mid-page section) */
+  --light-bg: #f9f9f9;
+  --light-ink: #171817;
+  --light-ink-2: #55565a;
+  --light-line: #e2e2e2;
+
+  --accent: #7aa2ff;    /* links, emphasis — lightened for dark bg */
+  --hl-ink: #171817;    /* text sitting on the highlight swipe */
+  --live: #56d07a;      /* status dot */
+
   --serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
   --sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -61,7 +75,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100svh;
-  background: var(--paper);
+  background: var(--bg);
   color: var(--ink);
   font: 400 1.0625rem/1.6 var(--sans);
   -webkit-font-smoothing: antialiased;
@@ -70,14 +84,14 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--highlight); color: var(--ink); }
+::selection { background: var(--highlight); color: var(--hl-ink); }
 
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--bg);
   padding: 0.5rem 1rem;
   border-radius: 8px;
 }
@@ -94,11 +108,13 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.95rem clamp(1rem, 4vw, 2.4rem);
-  background: rgba(240, 240, 240, 0.82);
+  background: rgba(23, 24, 23, 0.82);
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   backdrop-filter: saturate(1.4) blur(10px);
 }
-.site-header.on-white { background: rgba(255, 255, 255, 0.82); }
+.site-header.on-light {
+  background: rgba(249, 249, 249, 0.86);
+}
 
 .mark {
   display: inline-flex;
@@ -132,7 +148,7 @@ body {
   font-weight: 500;
   transition: background 0.25s var(--ease), color 0.25s var(--ease);
 }
-.site-nav .nav-join:hover { background: var(--ink); color: var(--white); }
+.site-nav .nav-join:hover { background: var(--ink); color: var(--bg); }
 
 .bottom {
   margin-top: auto;
@@ -144,8 +160,9 @@ body {
   align-items: center;
   color: var(--ink-3);
   font-size: 0.8rem;
+  border-top: 1px solid var(--line);
 }
-.bottom a { color: inherit; }
+.bottom a { color: inherit; text-decoration: none; }
 .bottom a:hover { color: var(--ink); }
 .bottom p { margin: 0; }
 
@@ -163,16 +180,21 @@ body {
   font-family: var(--serif);
   font-style: italic;
   font-size: 1.08em;
-  color: var(--blue);
+  color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--blue) 55%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
+/* the highlight swipe — marker sits behind, text flips to dark so it stays legible */
 .hl {
-  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--highlight) 78%, transparent) 58%);
-  padding: 0 0.06em;
+  background: var(--highlight);
+  color: var(--hl-ink);
+  padding: 0.04em 0.14em;
+  border-radius: 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .doodle {
@@ -183,10 +205,64 @@ body {
   overflow: visible;
 }
 
+/* ---------- figures — the brand DNA motif ----------
+ * The runners pack (four bodies mid-stride) repeats as an endless band: one
+ * element, the sprite tiled by `background`, drifting exactly one tile per
+ * cycle so the loop is seamless. Composited transform, so it costs nothing.
+ * `--fig-h` sets the row height; the tile is 1100 × 565, hence the ratio.
+ * On light ground use `runners-ink.png` by overriding --fig-src.
+ */
+.figures {
+  --fig-h: clamp(3rem, 7vw, 5rem);
+  --fig-w: calc(var(--fig-h) * 1.9469);
+  --fig-src: url("assets/runners-light.png");
+  --fig-opacity: 0.45;
+  position: relative;
+  overflow: hidden;
+  height: var(--fig-h);
+  opacity: var(--fig-opacity);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.figures::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100% + var(--fig-w));
+  background: var(--fig-src) repeat-x 0 50% / auto var(--fig-h);
+  animation: figure-drift 56s linear infinite;
+}
+@keyframes figure-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-1 * var(--fig-w)), 0, 0); }
+}
+
+/* watermark under the hero */
+.hero-figures {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.8rem, 3vh, 1.8rem);
+  --fig-h: clamp(2rem, 5vw, 3rem);
+  --fig-opacity: 0.15;
+  pointer-events: none;
+}
+
+/* the divider band that opens the contributors section */
+.band {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(1.4rem, 4vh, 2.2rem) 0;
+  --fig-opacity: 0.42;
+}
+.band + .story { padding-top: clamp(3rem, 9vh, 5rem); }
+
 /* ---------- hero ---------- */
 
 .hero {
-  background: var(--white);
+  background:
+    radial-gradient(120% 80% at 50% -10%, #202220 0%, var(--bg) 62%);
   min-height: 92svh;
   display: flex;
   flex-direction: column;
@@ -206,7 +282,7 @@ body {
   padding: 0.4rem 0.95rem;
   font-size: 0.78rem;
   color: var(--ink-2);
-  background: var(--white);
+  background: rgba(249, 249, 249, 0.03);
   margin: 0 0 clamp(1.6rem, 4vh, 2.6rem);
 }
 .hero-title {
@@ -221,7 +297,7 @@ body {
 .hero-underline {
   width: min(48vw, 19rem);
   height: auto;
-  color: var(--blue);
+  color: var(--accent);
   margin: 0.7rem 0 0;
   display: block;
   overflow: visible;
@@ -284,17 +360,19 @@ body {
   color: var(--ink-3);
 }
 
-/* ---------- inverted section ---------- */
+/* ---------- light inversion ---------- */
 
 .invert {
-  background: var(--ink);
-  color: var(--white);
+  background: var(--light-bg);
+  color: var(--light-ink);
   padding: clamp(4rem, 12vh, 8rem) clamp(1.1rem, 4vw, 2.4rem);
 }
-.invert .story p, .invert .statement { color: var(--white); }
-.invert .story p.dim, .invert .kicker { color: #9a9a9a; }
-.invert .em { color: #8db4ff; text-decoration-color: rgba(141, 180, 255, 0.5); }
-.invert .hl { background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.42) 58%); }
+.invert .story p, .invert .statement { color: var(--light-ink); }
+.invert .story p.dim { color: var(--light-ink-2); }
+.invert .kicker { color: var(--light-ink-2); }
+.invert .em { color: #1b4fd0; text-decoration-color: rgba(27, 79, 208, 0.4); }
+.invert .hl { background: var(--highlight); color: var(--hl-ink); }
+.invert .figures { --fig-src: url("assets/runners-ink.png"); }
 
 .barriers {
   display: grid;
@@ -304,8 +382,8 @@ body {
   margin: clamp(2rem, 6vh, 3rem) auto 0;
 }
 .barrier {
-  background: #232323;
-  border: 1px solid #333;
+  background: #ffffff;
+  border: 1px solid var(--light-line);
   border-radius: 16px;
   padding: 1.1rem 1.2rem 1.3rem;
   min-height: 9.5rem;
@@ -317,10 +395,10 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8f8f8f;
+  color: var(--light-ink-2);
 }
 .barrier-name { font-family: var(--serif); font-size: 1.5rem; line-height: 1.1; }
-.barrier p { margin: 0; font-size: 0.88rem; color: #b4b4b4; line-height: 1.5; }
+.barrier p { margin: 0; font-size: 0.88rem; color: var(--light-ink-2); line-height: 1.5; }
 
 /* ---------- contributors ---------- */
 
@@ -365,12 +443,13 @@ body {
 .person-role { color: var(--ink-2); font-size: 0.9rem; display: block; margin-top: 0.1rem; }
 .person-links { display: flex; flex-wrap: wrap; gap: 0.2rem 0.8rem; margin-top: 0.45rem; }
 .person-links a { color: var(--ink-2); font-size: 0.85rem; }
-.person-links a:hover { color: var(--blue); }
+.person-links a:hover { color: var(--accent); }
 
 /* ---------- closing call ---------- */
 
 .closing {
-  background: var(--white);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
   text-align: center;
   padding: clamp(4.5rem, 14vh, 9rem) clamp(1.1rem, 4vw, 2.4rem);
 }
@@ -392,7 +471,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: clamp(1.8rem, 5vh, 2.6rem) auto 0;
-  max-width: 30rem;
+  max-width: 32rem;
 }
 .field {
   flex: 1 1 16rem;
@@ -400,11 +479,12 @@ body {
   padding: 0.85rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: var(--white);
+  background: var(--bg);
   color: var(--ink);
   font: inherit;
   font-size: 0.95rem;
 }
+.field::placeholder { color: var(--ink-3); }
 .field:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 .btn {
   flex: none;
@@ -412,7 +492,7 @@ body {
   border: 1px solid var(--ink);
   border-radius: 999px;
   background: var(--ink);
-  color: var(--white);
+  color: var(--bg);
   font: inherit;
   font-size: 0.95rem;
   font-weight: 500;
@@ -422,7 +502,7 @@ body {
 }
 .btn:hover { transform: translateY(-2px); }
 .btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--ink); color: var(--white); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); }
 
 /* ---------- inner pages ---------- */
 
@@ -454,9 +534,13 @@ body {
   border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
-  transition: padding 0.3s var(--ease);
+  transition: padding 0.3s var(--ease), background 0.3s var(--ease);
 }
-.row:hover, .row:focus-visible { padding-left: 0.7rem; outline: none; }
+.row:hover, .row:focus-visible {
+  padding-left: 0.8rem;
+  background: rgba(249, 249, 249, 0.04);
+  outline: none;
+}
 .row-name {
   font-family: var(--serif);
   font-size: clamp(1.5rem, 4.4vw, 2.2rem);
@@ -471,7 +555,7 @@ body {
   transition: transform 0.3s var(--ease), color 0.3s var(--ease);
 }
 .row-arrow .gl { width: 1.5rem; height: 1.5rem; }
-.row:hover .row-arrow { transform: translate(4px, -4px); color: var(--blue); }
+.row:hover .row-arrow { transform: translate(4px, -4px); color: var(--accent); }
 .row-desc { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.95rem; margin: 0; max-width: 56ch; }
 .row-year { color: var(--ink-3); font-size: 0.85rem; }
 
@@ -479,7 +563,7 @@ body {
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 999px;
-  background: #2fbf5b;
+  background: var(--live);
   display: inline-block;
 }
 
@@ -487,7 +571,7 @@ body {
 
 .case-back { margin: 0 0 0.6rem; font-size: 0.85rem; }
 .case-back a { color: var(--ink-2); text-decoration: none; }
-.case-back a:hover { color: var(--blue); }
+.case-back a:hover { color: var(--accent); }
 .case-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 1.2rem; }
 .case-meta span {
   border: 1px solid var(--line);
@@ -495,19 +579,19 @@ body {
   padding: 0.3rem 0.8rem;
   font-size: 0.82rem;
   color: var(--ink-2);
-  background: var(--white);
+  background: var(--surface);
   max-width: 100%;
   overflow-wrap: anywhere;
 }
 .case-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; margin: 0 0 2rem; }
 .case-links a { color: var(--ink); font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-.case-links a:hover { color: var(--blue); }
+.case-links a:hover { color: var(--accent); }
 .case-fig {
   margin: 0.5rem 0 2.4rem;
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  background: var(--white);
+  background: var(--surface);
 }
 .case-fig figcaption {
   padding: 0.65rem 1.1rem 0.75rem;
@@ -520,7 +604,7 @@ body {
   display: grid;
   place-items: center;
   text-align: center;
-  background: var(--paper);
+  background: var(--surface-2);
   color: var(--ink-3);
   font-size: 0.9rem;
   padding: 0 1.5rem;
@@ -571,6 +655,7 @@ body {
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .btn:hover, .row:hover { transform: none; }
   .row:hover, .row:focus-visible { padding-left: 0.2rem; }
+  .figures::before { animation: none; }
 }
 
 @media (max-width: 34rem) {
