@@ -58,7 +58,11 @@ re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 
 There is no separate team page: the collective framing lives on Home and
 Contact, and `+ You, maybe` stands in the people list for contributors who
-haven't arrived yet.
+haven't arrived yet. Members are listed in both places — to add one, copy a
+`<li class="person">` block in `index.html` and `contact.html`, add the photo
+to `assets/` (240×240), and extend the `sameAs` list in the `index.html`
+structured data. When the count in "N to start. Open by design." changes,
+update the paragraph under it to match ("the N of us started it").
 
 ## Run
 
