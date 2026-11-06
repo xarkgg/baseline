@@ -25,39 +25,43 @@
   <meta name="twitter:image" content="assets/og-image.png" />
   <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <meta name="theme-color" content="#f3f0e9" />
+  <meta name="theme-color" content="#f0f0f0" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header on-white">
     <a class="mark" href="index.html" aria-label="Baseline — home">
       <img class="mark-img" src="assets/mark.png" alt="" />
       <span class="mark-word">baseline</span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="team.html">Team</a>
       <a href="work.html" aria-current="page">Work</a>
       <a href="contact.html">Contact</a>
+      <a class="nav-join" href="contact.html">Build with us</a>
     </nav>
   </header>
 
   <main id="main" class="page case">
-    <p class="case-back"><a href="work.html">← All projects</a></p>
+    <p class="case-back"><a href="work.html">← All work</a></p>
 
-    <h1>[Project name]</h1>
+    <div class="page-head">
+      <p class="kicker">Case study</p>
+      <h1>[Project name]</h1>
+      <p class="lede">[One honest sentence about what this project is and who it's for.]</p>
+    </div>
 
     <div class="case-meta" aria-label="Project facts">
-      <span>[What Baseline built — e.g. "Contracts + frontend"]</span>
-      <span>[Stack — e.g. "Solidity · Foundry · Next.js"]</span>
-      <span>[Where/when — e.g. "BUIDL CTC 2026 Fall"]</span>
-      <span>[Status — e.g. "Live" / "Prototype"]</span>
+      <span>[What Baseline built]</span>
+      <span>[Stack]</span>
+      <span>[Where / when]</span>
+      <span>[Status]</span>
     </div>
 
     <div class="case-links">
-      <a href="[live demo url]">Live demo <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5.0 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17.0 11.6"/></svg></a>
-      <a href="[repo url]">Repo <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5.0 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17.0 11.6"/></svg></a>
+      <a href="[live demo url]">Live demo ↗</a>
+      <a href="[repo url]">Repo ↗</a>
     </div>
 
     <figure class="case-fig">
@@ -70,10 +74,10 @@
       <p>[Who needed this and what was broken before it existed. Two or three sentences, no adjectives doing the work of facts.]</p>
 
       <h2>The constraints</h2>
-      <p>[What made this hard before any code: the deadline, the chain environment, the zero-cost budget, the one-weekend audience. This is where the story earns its interest.]</p>
+      <p>[What made this hard before any code: the deadline, the chain environment, the zero-cost budget, the audience. This is where the story earns its interest.]</p>
 
       <h2>What we built</h2>
-      <p>[The system in three-ish sentences — the parts that carry real weight, in the order data flows through them.]</p>
+      <p>[The system in a few sentences — the parts that carry real weight, in the order data flows through them.]</p>
 
       <figure class="case-fig">
         <div class="case-slot case-slot-tall">[second shot — UI detail, architecture, or a state diagram]</div>
@@ -87,12 +91,12 @@
       <p>[What works today, who used it, what's next. Honest numbers only — if there are none, say what shipping it proved.]</p>
     </section>
 
-    <a class="cta" href="contact.html">Build with us</a>
+    <a class="btn" href="contact.html">Build with us</a>
   </main>
 
   <footer class="bottom">
-    <p>© Baseline</p>
-    <p><a href="team.html">Meet the team <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12.0"/><path d="M18.2 12.1 Q 15.6 11.6 13.0 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
+    <p>© Baseline — an open-source engineering collective</p>
+    <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
   </footer>
 </body>
 </html>

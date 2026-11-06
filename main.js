@@ -1,138 +1,29 @@
-/* Baseline — team card-stack flow.
- * One card at a time is expanded; the rest stay collapsed as chips.
- * Auto-advances, pauses on interaction, loops. Reduced motion = manual only. */
-
+/* Baseline — site behaviour.
+ *
+ * Deliberately small and dependency-free:
+ *  1. scroll reveal for [.reveal] sections (progressive enhancement — the
+ *     `.js` class is set inline in <head>, so nothing hides without JS);
+ *  2. nothing else. No carousel, because the site no longer has one.
+ */
 (function () {
   "use strict";
 
-  var stack = document.getElementById("stack");
-  var dotsBox = document.getElementById("dots");
-  var prevBtn = document.getElementById("prev");
-  var nextBtn = document.getElementById("next");
+  var nodes = document.querySelectorAll(".reveal");
+  if (!nodes.length) return;
 
-  var INTERVAL = 3800;      // ms per open card
-  var RESUME_AFTER = 6000;  // ms idle before autoplay resumes
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  var active = 0;
-  var paused = reduced;     // reduced motion: never autoplay
-  var resumeTimer = null;
-
-  function initials(name) {
-    return name.split(/\s+/).map(function (p) { return p[0]; })
-      .slice(0, 2).join("").toUpperCase();
+  if (reduced || !("IntersectionObserver" in window)) {
+    nodes.forEach(function (n) { n.classList.add("in"); });
+    return;
   }
 
-  function linksHtml(m) {
-    return (m.links || []).filter(function (l) { return l.href; }).map(function (l) {
-      return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + "</a>";
-    }).join("");
-  }
-
-  function build() {
-    var frag = document.createDocumentFragment();
-    TEAM.forEach(function (m, i) {
-      var card = document.createElement("article");
-      card.className = "card";
-      card.style.setProperty("--i", i);
-      card.style.setProperty("--h", m.hue);
-
-      var chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "chipbar";
-      chip.setAttribute("aria-expanded", "false");
-      chip.innerHTML =
-        '<span class="avatar">' + (m.photo ? "<img src=\"" + m.photo + "\" alt=\"\">" : initials(m.name)) + "</span>" +
-        '<span class="chipmeta"><span class="chipname"></span><span class="chiprole"></span></span>' +
-        '<span class="twisty" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15.9 C 10 14 7.9 11.6 6.8 9.3 M12 15.9 C 14 14 16.1 11.6 17.2 9.3" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg></span>';
-      chip.querySelector(".chipname").textContent = m.name;
-      chip.querySelector(".chiprole").textContent = m.role;
-      chip.addEventListener("click", function () { if (i !== active) { activate(i, true); unpauseSoon(); } else { paused = true; resumeSoon(); } });
-
-      var body = document.createElement("div");
-      body.className = "openbody";
-      var links = linksHtml(m);
-      body.innerHTML =
-        '<div class="openinner">' +
-          '<div class="banner">' +
-            (m.photo ? '<img src="' + m.photo + '" alt="">' : "") +
-            '<span class="banner-initials">' + initials(m.name) + "</span>" +
-            '<span class="banner-caption"><span class="banner-name"></span><span class="banner-role"></span></span>' +
-            '<button class="advance" type="button" aria-label="Next member"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.4 5.7 C 12.3 7.6 14.8 9.7 15.5 11.8 C 14.9 14.1 12.5 16.3 9.2 18.4" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
-          "</div>" +
-          '<div class="info">' +
-            "<p class=\"bio\"></p>" +
-            '<ul class="tags">' + m.tags.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>" +
-            '<div class="links">' + links + "</div>" +
-          "</div>" +
-        "</div>";
-      body.querySelector(".banner-name").textContent = m.name;
-      body.querySelector(".banner-role").textContent = m.role;
-      body.querySelector(".bio").textContent = m.bio;
-      body.querySelector(".advance").addEventListener("click", function () { activate((active + 1) % TEAM.length, true); unpauseSoon(); });
-
-      if (m.photo) card.classList.add("has-photo");
-      card.appendChild(chip);
-      card.appendChild(body);
-      frag.appendChild(card);
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      io.unobserve(entry.target);
     });
-    stack.appendChild(frag);
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
 
-    TEAM.forEach(function (_, i) {
-      var dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "dot";
-      dot.setAttribute("aria-label", "Show member " + (i + 1));
-      dot.addEventListener("click", function () { activate(i, true); unpauseSoon(); });
-      dotsBox.appendChild(dot);
-    });
-  }
-
-  function activate(i, user) {
-    active = (i + TEAM.length) % TEAM.length;
-    Array.prototype.forEach.call(stack.children, function (card, j) {
-      var open = j === active;
-      card.classList.toggle("is-open", open);
-      card.querySelector(".chipbar").setAttribute("aria-expanded", String(open));
-    });
-    Array.prototype.forEach.call(dotsBox.children, function (dot, j) {
-      dot.setAttribute("aria-current", j === active ? "true" : "false");
-    });
-    if (user) {
-      var el = stack.children[active];
-      if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
-    }
-  }
-
-  function unpauseSoon() {
-    paused = true;
-    resumeSoon();
-  }
-  function resumeSoon() {
-    if (resumeTimer) clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(function () { paused = false; }, RESUME_AFTER);
-  }
-  function cancelResume() {
-    if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; }
-  }
-
-  prevBtn.addEventListener("click", function () { activate(active - 1, true); unpauseSoon(); });
-  nextBtn.addEventListener("click", function () { activate(active + 1, true); unpauseSoon(); });
-
-  /* pause while the pointer or keyboard focus is on the stack (mouse hover,
-   * touch press), resume a few seconds after it leaves */
-  ["pointerenter", "focusin"].forEach(function (ev) {
-    stack.addEventListener(ev, function () { paused = true; cancelResume(); });
-  });
-  stack.addEventListener("pointerdown", unpauseSoon);
-  stack.addEventListener("pointerleave", resumeSoon);
-  stack.addEventListener("focusout", function () {
-    if (!stack.contains(document.activeElement)) resumeSoon();
-  });
-
-  build();
-  activate(0, false);
-
-  function tick() { if (!paused) activate(active + 1, false); }
-  setInterval(tick, INTERVAL);
+  nodes.forEach(function (n) { io.observe(n); });
 })();

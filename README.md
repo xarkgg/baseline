@@ -1,64 +1,73 @@
-# Baseline — team website
+# Baseline — collective website
 
 The Baseline organization site. Static, dependency-free, no build step.
 
-Design language: bold black organic shapes on warm off-white, with
-handwritten-leaning type (Shantell Sans, self-hosted, OFL) for display text
-and friendly microcopy. Lots of negative space.
+Structure: an editorial scroll — full-viewport hero, then a long story column
+of centred text with generous empty space, an inverted black section, a
+contributors list, and a closing call. The layout is a homage to the Wabi
+launch page (light editorial canvas, one measured column of text, a
+hand-made annotation layer).
 
-Brand DNA: playful abstract human figure silhouettes, drawn with bold organic
-shapes — exaggerated proportions, irregular contours, expressive movement.
-The rule applies to icons and text too: bullets, chevrons and arrows follow
-the hand-made language, and display type stays calligraphic, never geometric.
+Brand DNA — applies to ICONS AND TEXT TOO: playful abstract human figure
+silhouettes, drawn with bold organic shapes; exaggerated proportions,
+irregular contours, expressive movement. In practice: arrows, chevrons and
+underlines are hand-drawn SVG (`.gl`, `.hero-underline`), running-text
+emphasis uses the serif italic in blue (`.em`), and highlights use a yellow
+marker swipe (`.hl`).
+
+Type: **Instrument Serif** (high-contrast display serif) over **Inter**
+(neutral grotesque), both self-hosted OFL. A commercial licence for Arista Pro
+or Kalice + Selecta would be a drop-in: swap the `@font-face` sources and
+`--serif` in `styles.css` and nothing else changes. Do not ship the Arista Pro
+trial files from dafont — those are personal-use only.
 
 Logo: `assets/mark.png` — hand-drawn "person with raised arms inside ink
-rings" mark (supplied by the team, processed from source art onto
-transparency). The spherical blob works as compositional accent elsewhere
-(the `.trio` bullets). Derived assets, all palette-quantized PNG:
-`favicon.png` (64px, tab icon), `apple-touch-icon.png` (180px), and
-per-page share cards `og-image.png` (home/404/case), `og-team.png`,
-`og-work.png` — 1200×630 each. `robots.txt` exists; `sitemap.xml` and
-canonical URLs wait on the production domain (add both when known).
-`vercel.json` sets security headers (nosniff, frame-deny, referrer,
-permissions) and is otherwise zero-config.
+rings" mark (supplied by the team). Derived assets are palette-quantized:
+`favicon.png` (64px), `apple-touch-icon.png` (180px), and per-page share cards
+`og-image.png` (home), `og-work.png`, `og-contact.png` — 1200×630 each.
+`robots.txt` exists; `sitemap.xml` and canonical URLs wait on the production
+domain. `vercel.json` sets security headers and is otherwise zero-config.
 
 ## Pages
 
 | Page | File | What |
 | --- | --- | --- |
-| Home | `index.html` | "Groundwork first." hero, one morphing blob, three statements, closing identity section ("The Engineering Standard.") |
-| Team | `team.html` | The card-stack flow: one member expanded at a time, chips around it, auto-cycles 3.8s, pauses on interaction, prev/next + dots. Colleagues' card stack modeled on a **@glow dsgn** showcase video |
-| Work | `work.html` | Real shipped/selected projects with links |
-| Contact | `contact.html` | Direct links + email — no forms |
+| Home | `index.html` | Hero + the collective story: who we are, what we build, what gets in the way (inverted section), where we put our weight, the people, closing call |
+| Work | `work.html` | Shipped projects, each linked to its live product |
+| Contact | `contact.html` | One address, the people, contributors welcome |
 | Case template | `case.html` | `noindex` template for project deep-dives (see "Case studies") |
-| 404 | `404.html` | "Oops." |
+| 404 | `404.html` | "404 — this page went out for a walk" |
+
+There is no separate team page: the collective framing lives on Home and
+Contact, and `+ You, maybe` stands in the people list for contributors who
+haven't arrived yet.
 
 ## Run
 
 ```
 python -m http.server 8000
-# http://localhost:8000 — or open index.html directly (no modules, so file:// works)
+# http://localhost:8000 — or open index.html directly (file:// works, main.js is a plain script)
 ```
 
 ## Case studies
 
-`case.html` is the template for the project deep-dives (problem → constraints →
+`case.html` is the template for project deep-dives (problem → constraints →
 what we built → what was hard → where it landed). To publish one: duplicate it
 to `<project>.html`, replace every `[bracketed]` line, add two screenshots to
 `assets/`, delete its `noindex` tag, then point the matching row in `work.html`
-at the new page. Email lives in row 1 of `contact.html` — swap the address there
-when the team domain mailbox exists.
+at the new page.
 
 ## Editing
 
-- **Team content:** `data.js` (`TEAM` array) — name, role, bio, tags, links,
-  `hue`, and `photo` (drop images into `assets/`, landscape ~900×600). The
-  `team.html` `<noscript>` fallback lists the same three members — update it
-  together with `data.js`.
-- **Work/Contact content:** inline in `work.html` / `contact.html` — copy rows
-  to add entries.
-- **Type:** `ShantellSans-latin.woff2` (variable 300–800, latin subset, OFL) in
-  `assets/fonts/`. Display text uses it; body text stays on the system sans.
+- **Work content:** rows inline in `work.html`.
+- **People:** the `.people` list in `index.html` and `contact.html` (name, role,
+  links, photo from `assets/`).
+- **The story copy:** inline in `index.html` — each `<section class="story">`
+  is one beat. Keep the supplied collective copy verbatim where it appears.
+- **Email:** `contact.html` and the closing form action in `index.html`
+  (currently `kuskomanass@gmail.com`; swap when the team mailbox exists).
+- **Motion:** `main.js` only does scroll-reveal for `.reveal`; it is progressive
+  (the `.js` class is set inline in `<head>`, so nothing hides without JS).
 
 ## Deploys
 

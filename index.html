@@ -15,58 +15,160 @@
   <meta name="twitter:image" content="assets/og-image.png" />
   <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <meta name="theme-color" content="#f3f0e9" />
+  <meta name="theme-color" content="#f0f0f0" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Baseline",
+    "description": "An independent, open-source engineering collective.",
+    "email": "kuskomanass@gmail.com",
+    "sameAs": [
+      "https://github.com/xarkgg",
+      "https://github.com/TheRealNajim",
+      "https://github.com/TimothyBayode"
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header on-white">
     <a class="mark" href="index.html" aria-label="Baseline — home">
       <img class="mark-img" src="assets/mark.png" alt="" />
       <span class="mark-word">baseline</span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="team.html">Team</a>
       <a href="work.html">Work</a>
       <a href="contact.html">Contact</a>
+      <a class="nav-join" href="contact.html">Build with us</a>
     </nav>
   </header>
 
-  <main id="main" class="home">
+  <main id="main">
     <section class="hero">
-      <h1>Groundwork first.</h1>
-      <p>An independent engineering collective in Nigeria. We build products, advance practice, and make engineering accessible. No unnecessary barriers — just the knowledge, tools, and opportunities to grow.</p>
-      <img class="hero-mark" src="assets/mark.png" alt="" aria-hidden="true" />
-      <a class="cta" href="team.html">Meet the team</a>
-      <nav class="trio" aria-label="What we do">
-        <p><span class="dot" aria-hidden="true"></span>Products that solve real problems, built in the open.</p>
-        <p><span class="dot" aria-hidden="true"></span>Knowledge shared freely — no gatekeeping, just growth.</p>
-        <p><span class="dot" aria-hidden="true"></span>Tools that empower the next generation of engineers.</p>
-      </nav>
+      <p class="hero-pill">An independent, open-source engineering collective</p>
+      <h1 class="hero-title">Groundwork<br />first.</h1>
+      <svg class="hero-underline" viewBox="0 0 300 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+        <path d="M7 14 Q 40 5 74 11 Q 108 17 142 9 Q 176 2 210 10 Q 244 17 276 7" />
+      </svg>
+      <p class="hero-sub">We build products, improve how engineering is practised, and make engineering and artificial intelligence accessible to everyone.</p>
+      <span class="hero-scroll">The story so far <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12.1 4.5 Q 11.6 12 12.0 19.6"/><path d="M12.0 19.6 Q 11.4 16.9 10.0 14.4"/><path d="M12.0 19.6 Q 12.7 16.9 14.1 14.4"/></svg></span>
     </section>
 
-    <section class="identity" aria-labelledby="identity-title">
-      <div class="identity-inner">
-        <div>
-          <p class="identity-brand">Baseline</p>
-          <h2 class="identity-statement" id="identity-title">The Engineering Standard.</h2>
-        </div>
-        <div class="identity-copy">
-          <p>Baseline is an independent, open-source engineering collective focused on building products, improving how engineering is practised and making engineering and artificial intelligence more accessible.</p>
-          <p>We believe everyone should have a clear path into engineering. Whether someone is taking their first steps into technology or already building complex systems, Baseline provides the knowledge, resources, tools and opportunities to help them grow.</p>
-          <p>We build and launch products, contribute to open-source projects, share what we learn and create opportunities for people to take part in meaningful engineering work.</p>
-          <p>Our work puts the next generation of engineers first, while making room for experienced practitioners to collaborate, research and keep growing.</p>
-          <p>We want people to understand what we build, improve it and use that knowledge to build what comes next.</p>
-        </div>
+    <section class="story">
+      <p class="kicker reveal">The collective</p>
+      <h2 class="statement serif reveal">An independent engineering collective.</h2>
+      <p class="dim reveal">Baseline is an independent, open-source engineering collective focused on building products, improving how engineering is practised and making engineering and artificial intelligence more accessible.</p>
+      <p class="dim reveal">We believe everyone should have a clear path into engineering. Whether someone is taking their first steps into technology or already building complex systems, Baseline provides the <span class="hl">knowledge, resources, tools and opportunities</span> to help them grow.</p>
+    </section>
+
+    <section class="story">
+      <p class="kicker reveal">What we do</p>
+      <h2 class="statement reveal">We build, then we show the work.</h2>
+      <p class="dim reveal">We build and launch products, contribute to open-source projects, share what we learn and create opportunities for people to take part in meaningful engineering work.</p>
+      <p class="dim reveal">Our work puts the <span class="em">next generation of engineers</span> first, while making room for experienced practitioners to collaborate, research and keep growing.</p>
+    </section>
+
+    <section class="invert">
+      <div class="story center">
+        <p class="kicker reveal">What gets in the way</p>
+        <h2 class="statement reveal">The gate is rarely the talent.</h2>
+        <p class="dim reveal">The same four walls show up wherever engineering is taught, hired or credited. We build around them instead of building on top of them.</p>
       </div>
-      <p class="identity-close">Groundwork first.</p>
+      <div class="barriers">
+        <article class="barrier reveal">
+          <span class="barrier-tag">Access</span>
+          <span class="barrier-name">Credentials first</span>
+          <p>What you can show beats what you can do — so people without the right school never get the first look.</p>
+        </article>
+        <article class="barrier reveal">
+          <span class="barrier-tag">Cost</span>
+          <span class="barrier-name">Paywalled tools</span>
+          <p>The stack that teaches you fastest is priced like the job you're trying to get.</p>
+        </article>
+        <article class="barrier reveal">
+          <span class="barrier-tag">Opacity</span>
+          <span class="barrier-name">Closed systems</span>
+          <p>Learn to use it, never to understand it. The machinery stays behind glass, and so does the knowledge.</p>
+        </article>
+        <article class="barrier reveal">
+          <span class="barrier-tag">On-ramp</span>
+          <span class="barrier-name">No first project</span>
+          <p>A path into engineering needs somewhere real to start — a first shipped thing, not another tutorial.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="story">
+      <p class="kicker reveal">Where we put our weight</p>
+      <h2 class="statement serif reveal">Understand it, improve it, build what comes next.</h2>
+      <p class="dim reveal">We want people to understand what we build, improve it and use that knowledge to build what comes next. Everything we ship is meant to be read, forked and argued with.</p>
+    </section>
+
+    <section class="story center">
+      <p class="kicker reveal">The people</p>
+      <h2 class="statement reveal">Three to start. Open by design.</h2>
+      <p class="dim reveal">Baseline is a collective, not a founders' club. The three of us started it; every project here is open to contributors who want a real thing to work on.</p>
+
+      <ul class="people">
+        <li class="person reveal">
+          <img src="assets/manass.jpg" alt="" width="48" height="48" />
+          <span>
+            <span class="person-name">Manass Kusko</span>
+            <span class="person-role">Backend &amp; smart contracts</span>
+            <span class="person-links"><a href="https://github.com/xarkgg">GitHub</a><a href="https://x.com/xarkgg">X</a></span>
+          </span>
+        </li>
+        <li class="person reveal">
+          <img src="assets/najim.jpg" alt="" width="48" height="48" />
+          <span>
+            <span class="person-name">Najimdeen</span>
+            <span class="person-role">Cybersecurity &amp; frontend</span>
+            <span class="person-links"><a href="https://github.com/TheRealNajim">GitHub</a><a href="https://najimdeenajadi.xyz">Website</a></span>
+          </span>
+        </li>
+        <li class="person reveal">
+          <img src="assets/timothy.jpg" alt="" width="48" height="48" />
+          <span>
+            <span class="person-name">Timothy Bayode</span>
+            <span class="person-role">Frontend engineering</span>
+            <span class="person-links"><a href="https://github.com/TimothyBayode">GitHub</a><a href="https://timothybayode.xyz/">Website</a></span>
+          </span>
+        </li>
+        <li class="person person-open reveal">
+          <span class="person-plus" aria-hidden="true">+</span>
+          <span>
+            <span class="person-name">You, maybe</span>
+            <span class="person-role">Contributors welcome on every project</span>
+            <span class="person-links"><a href="contact.html">Say hello</a></span>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="closing">
+      <h2 class="reveal">Groundwork first.</h2>
+      <p class="reveal">Working on something real, or want in on one of ours? We answer every message.</p>
+      <form class="actions reveal" action="mailto:kuskomanass@gmail.com" method="post" enctype="text/plain">
+        <label class="skip" for="email">Your email</label>
+        <input class="field" id="email" name="email" type="email" placeholder="Your email" autocomplete="email" />
+        <button class="btn" type="submit">Build with us</button>
+      </form>
+      <p class="reveal" style="margin-top:1.4rem;font-size:0.85rem">
+        or go straight to <a href="contact.html" style="color:var(--blue)">contact</a> · <a href="work.html" style="color:var(--blue)">see the work</a>
+      </p>
     </section>
   </main>
 
   <footer class="bottom">
-    <p>© Baseline</p>
-    <p><a href="work.html">Selected work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12.0"/><path d="M18.2 12.1 Q 15.6 11.6 13.0 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
+    <p>© Baseline — an open-source engineering collective</p>
+    <p><a href="work.html">Selected work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
