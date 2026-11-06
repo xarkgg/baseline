@@ -33,7 +33,12 @@ hand-drawn "person with raised arms inside rings" mark, keyed from the team's
 supplied artwork. Derived assets, all palette-quantized: `favicon.png` (64px,
 light — a dark favicon vanishes in a dark browser tab), `apple-touch-icon.png`
 (180px, light mark on the brand ground), and per-page share cards
-`og-image.png` (home), `og-work.png`, `og-contact.png` — 1200×630 each.
+`og-image.png` (home), `og-work.png`, `og-contact.png`, `og-sherwood.png`,
+`og-perppilot.png`, `og-zac.png` — 1200×630 each.
+
+Case-study figures are the live captures, kept as WebP (`sherwood-app.webp`,
+`perppilot-repo.webp`, and so on) — a full-page screenshot at PNG weight costs
+~2 MB, WebP costs ~0.5 MB, and the lossless text is still legible at both.
 `robots.txt` exists; `sitemap.xml` and canonical URLs wait on the production
 domain. `vercel.json` sets security headers and is otherwise zero-config.
 
@@ -50,10 +55,13 @@ re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 
 | Page | File | What |
 | --- | --- | --- |
-| Home | `index.html` | Hero + the collective story: who we are, what we build, what gets in the way (inverted section), where we put our weight, the people, closing call |
-| Work | `work.html` | Shipped projects, each linked to its live product |
+| Home | `index.html` | Hero + the collective story: who we are, what we build, what gets in the way (light inversion), where we put our weight, the people, closing call |
+| Work | `work.html` | Three featured projects (one per member), each with a case study, plus "Also running" for the rest |
+| Sherwood | `sherwood.html` | Case study — on-chain downside protection (Manass) |
+| PerpPilot | `perppilot.html` | Case study — Hyperliquid copy-trading co-pilot (Najim) |
+| Zac | `zac.html` | Case study — private Zcash payments by name (Mhizter) |
 | Contact | `contact.html` | One address, the people, contributors welcome |
-| Case template | `case.html` | `noindex` template for project deep-dives (see "Case studies") |
+| Case template | `case.html` | `noindex` template for new deep-dives (see "Case studies") |
 | 404 | `404.html` | "404 — this page went out for a walk" |
 
 There is no separate team page: the collective framing lives on Home and
@@ -73,11 +81,19 @@ python -m http.server 8000
 
 ## Case studies
 
-`case.html` is the template for project deep-dives (problem → constraints →
-what we built → what was hard → where it landed). To publish one: duplicate it
-to `<project>.html`, replace every `[bracketed]` line, add two screenshots to
-`assets/`, delete its `noindex` tag, then point the matching row in `work.html`
-at the new page.
+`sherwood.html`, `perppilot.html` and `zac.html` are published: one project per
+member, each in a different area (on-chain finance, market intelligence, private
+payments). They follow the same shape — the problem → the constraints → what we
+built → what was hard → where it landed.
+
+`case.html` is the `noindex` template for the next one. To publish: duplicate
+it, replace every `[bracketed]` line with real detail, capture the live app into
+`assets/` and swap the `.case-slot` placeholders for
+`<img class="case-shot" …>`, delete the `noindex` tag, then point a row in
+`work.html` at the new page. Write the numbers you can verify and the limits you
+actually have — every published case study names its own gaps (unreviewed
+contracts, testnet fixtures, an unaudited build) rather than implying cover that
+isn't there.
 
 ## Editing
 

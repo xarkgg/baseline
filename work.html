@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Baseline</title>
-  <meta name="description" content="What the Baseline collective has shipped — finance, privacy, legal tooling and air quality, all open." />
+  <meta name="description" content="Three projects from the Baseline collective — on-chain finance, market intelligence, and private payments. Each one open to contributors." />
   <meta property="og:title" content="Work — Baseline" />
-  <meta property="og:description" content="What the Baseline collective has shipped." />
+  <meta property="og:description" content="Three projects from the Baseline collective." />
   <meta property="og:image" content="assets/og-work.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -37,39 +37,50 @@
     <div class="page-head">
       <p class="kicker">Shipped, in the open</p>
       <h1>Things we built.</h1>
-      <p class="lede">Real systems with real constraints — finance, privacy, legal tooling and air quality. Every one of these is public, and every one is open to contributors.</p>
+      <p class="lede">Three projects, one from each of us — on-chain finance, market intelligence, and private payments. Each has a case study; each is open to contributors.</p>
     </div>
 
-    <!-- Rows link straight to the running products. To add a deep-dive instead:
-         copy case.html, fill it in, drop its noindex tag, then point that
-         row's href at the new page. -->
+    <!-- Each row opens a case study (sherwood/perppilot/zac.html). To add one:
+         copy case.html, fill it in, drop its noindex tag, then add a row here. -->
     <nav class="rows" aria-label="Projects">
-      <a class="row" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener">
+      <a class="row" href="sherwood.html">
         <span class="row-name">Sherwood<span class="live-dot" aria-hidden="true"></span></span>
         <span class="row-arrow" aria-hidden="true"><svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17 11.6"/></svg></span>
-        <span class="row-desc">Programmable downside protection for tokenized stocks. Buy a floor, keep the upside, settle on verified prices — on an Arbitrum L2.</span>
+        <span class="row-desc">Programmable downside protection for tokenized stocks. Buy a floor, keep the upside, settle on verified prices — on an Arbitrum L2. <span class="row-by">Built by Manass</span></span>
       </a>
-      <a class="row" href="https://trycondition.vercel.app" target="_blank" rel="noopener">
-        <span class="row-name">Condition<span class="live-dot" aria-hidden="true"></span></span>
+      <a class="row" href="perppilot.html">
+        <span class="row-name">PerpPilot<span class="live-dot" aria-hidden="true"></span></span>
         <span class="row-arrow" aria-hidden="true"><svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17 11.6"/></svg></span>
-        <span class="row-desc">Parametric insurance where the claim data stays private — zero-knowledge proofs over a public/private ledger split.</span>
+        <span class="row-desc">A copy-trading co-pilot for Hyperliquid perpetuals: rank the traders worth following, score their record, and get alerted the moment they move. <span class="row-by">Built by Najim</span></span>
       </a>
-      <a class="row" href="https://exetazo.xyz" target="_blank" rel="noopener">
-        <span class="row-name">Exetazo<span class="live-dot" aria-hidden="true"></span></span>
+      <a class="row" href="zac.html">
+        <span class="row-name">Zac<span class="live-dot" aria-hidden="true"></span></span>
         <span class="row-arrow" aria-hidden="true"><svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17 11.6"/></svg></span>
-        <span class="row-desc">A browser extension that reads a legal agreement and flags the clauses that matter — before you sign it.</span>
-      </a>
-      <a class="row" href="https://legacydemo.vercel.app" target="_blank" rel="noopener">
-        <span class="row-name">Legacy<span class="live-dot" aria-hidden="true"></span></span>
-        <span class="row-arrow" aria-hidden="true"><svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17 11.6"/></svg></span>
-        <span class="row-desc">A succession layer for tokenized real-world assets — because a contract outlives its account holder.</span>
-      </a>
-      <a class="row" href="https://haqi-one.vercel.app" target="_blank" rel="noopener">
-        <span class="row-name">HAQI<span class="live-dot" aria-hidden="true"></span></span>
-        <span class="row-arrow" aria-hidden="true"><svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5.4 18.6 Q 10.2 13.6 17.7 6.1"/><path d="M12.4 5 Q 15.4 4.9 18.1 5.8"/><path d="M18.1 5.8 Q 17.9 8.8 17 11.6"/></svg></span>
-        <span class="row-desc">Air-quality verdicts for Lagos that explain the why, not just the number — built for someone with no idea what PM2.5 means.</span>
+        <span class="row-desc">Private Zcash payments by name — sealed payment links and bill splits that keep the amount, the note and the counterparties off the chain and off the server. <span class="row-by">Built by Mhizter</span></span>
       </a>
     </nav>
+
+    <div class="also">
+      <h2>Also running</h2>
+      <ul>
+        <li>
+          <a href="https://trycondition.vercel.app" target="_blank" rel="noopener">Condition</a>
+          <span>Privacy-preserving parametric insurance on Midnight — public policies, private claims.</span>
+        </li>
+        <li>
+          <a href="https://exetazo.xyz" target="_blank" rel="noopener">Exetazo</a>
+          <span>A browser extension that reads a legal agreement and flags the clauses that matter, before you sign it.</span>
+        </li>
+        <li>
+          <a href="https://legacydemo.vercel.app" target="_blank" rel="noopener">Legacy</a>
+          <span>A succession layer for tokenized real-world assets — because a contract outlives its account holder.</span>
+        </li>
+        <li>
+          <a href="https://haqi-one.vercel.app" target="_blank" rel="noopener">HAQI</a>
+          <span>Air-quality verdicts for Lagos that explain the why, not just the number.</span>
+        </li>
+      </ul>
+    </div>
   </main>
 
   <footer class="bottom">

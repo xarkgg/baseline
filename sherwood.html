@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Case study: Sherwood. Built by Manass Kusko. Publish-ready as written. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sherwood — Baseline</title>
+  <meta name="description" content="Programmable downside protection for tokenized stocks — a Solidity protocol on an Arbitrum L2, with 195 contract tests and eight documented adversarial refusals." />
+  <meta property="og:title" content="Sherwood — Baseline" />
+  <meta property="og:description" content="Programmable downside protection for tokenized stocks, on an Arbitrum L2." />
+  <meta property="og:image" content="assets/og-sherwood.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sherwood — keep the upside, cap your losses" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og-sherwood.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#171817" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="mark" href="index.html" aria-label="Baseline — home">
+      <img class="mark-img" src="assets/mark-light.png" alt="" />
+      <span class="mark-word">baseline</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-join" href="contact.html">Build with us</a>
+    </nav>
+  </header>
+
+  <main id="main" class="page case">
+    <p class="case-back"><a href="work.html">← All work</a></p>
+
+    <div class="page-head">
+      <p class="kicker">Case study · Manass Kusko</p>
+      <h1>Sherwood</h1>
+      <p class="lede">Buy a floor under a stock token, keep every gain above it, and settle against prices read from the chain. If the price never falls through, you simply keep your upside.</p>
+    </div>
+
+    <div class="case-meta" aria-label="Project facts">
+      <span>Solidity contracts + a React app</span>
+      <span>Foundry, Chainlink, USDG</span>
+      <span>Robinhood Chain testnet, 46630</span>
+      <span>Live on testnet · unaudited</span>
+    </div>
+
+    <div class="case-links">
+      <a href="https://sherwoodnotes.vercel.app">Live app ↗</a>
+      <a href="https://github.com/xarkgg/sherwood">Repo ↗</a>
+    </div>
+
+    <figure class="case-fig">
+      <img class="case-shot" src="assets/sherwood-app.webp" alt="The Sherwood landing page: “Keep the upside. Cap your losses.” with three steps underneath." width="1500" height="1000" loading="lazy" />
+      <figcaption>The live app. Every number a visitor sees is a contract read — the page never estimates a price locally.</figcaption>
+    </figure>
+
+    <section class="case-body">
+      <h2>The problem</h2>
+      <p>Stock tokens put equities on a chain, but holding one still exposes you to the whole downside. The tools that fix that are built for desks: strikes, expiries, Greeks, several positions to manage. For someone holding a token and wanting a floor under it, there was nothing simple that settled on-chain.</p>
+
+      <h2>The constraints</h2>
+      <p>A testnet demo means the honest parts are hard to fake. Chainlink publishes no tokenized-equity feeds on this chain, so prices there are fixtures — and the code had to be written so a fixture can never be mistaken for market data. Settlement also had to fail closed: an oracle that is stale must block a payout rather than quietly settle on frozen numbers.</p>
+
+      <h2>What we built</h2>
+      <p>A Protection Note is an immutable on-chain record: a floor, an amount, and an expiry. A vault of backers provides the collateral behind it, and buying protection reserves that collateral before any premium moves. At settlement the contract pays <code>max(0, protectedValue − currentValue)</code> on the shares you still hold — sell them mid-flight and that part is simply uncovered.</p>
+
+      <figure class="case-fig">
+        <img class="case-shot" src="assets/sherwood-refusals.webp" alt="A table titled “Ways we tried to break it”, listing ten attacks and the revert or test that stopped each one." width="960" height="1338" loading="lazy" />
+        <figcaption>Ten attacks, each answered by a revert or a named test — including the one the real GitHub Actions run caught. Adversarial evidence reads better than a feature list.</figcaption>
+      </figure>
+
+      <h2>What was hard</h2>
+      <p>The oracle gate took the most thought. This is an Arbitrum-based L2, and during a sequencer outage a feed's timestamp can look fresh while the price it carries predates the outage. The check reads Chainlink's uptime feed first, then a post-restart grace window, and treats a malformed round as "down". It is off where the chain publishes no uptime feed — which is the state of testnet 46630 today — and the README says so rather than implying cover that is not there.</p>
+
+      <h2>Where it landed</h2>
+      <p>195 contract tests and 33 frontend tests pass, both on every push. The five real Robinhood testnet stocks are wired, with live feed prices and a public faucet for test USDG. The contracts are unaudited and the testnet prices are fixtures — 195 tests pin the math and the guards, and no third party has reviewed them.</p>
+    </section>
+
+    <a class="btn" href="contact.html">Build with us</a>
+  </main>
+
+  <footer class="bottom">
+    <p>© Baseline — an open-source engineering collective</p>
+    <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
+  </footer>
+</body>
+</html>

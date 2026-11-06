@@ -558,6 +558,24 @@ body {
 .row:hover .row-arrow { transform: translate(4px, -4px); color: var(--accent); }
 .row-desc { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.95rem; margin: 0; max-width: 56ch; }
 .row-year { color: var(--ink-3); font-size: 0.85rem; }
+.row-by { display: block; margin-top: 0.3rem; color: var(--ink-3); font-size: 0.82rem; }
+
+/* the projects that are shipped but not yet written up as case studies */
+.also { margin: clamp(2.4rem, 7vh, 3.6rem) 0 0; }
+.also h2 {
+  margin: 0 0 0.2rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.also ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+.also li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.9rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+.also a { color: var(--ink); font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.also a:hover { color: var(--accent); }
+.also span { color: var(--ink-3); font-size: 0.88rem; }
 
 .live-dot {
   width: 0.42rem;
@@ -610,8 +628,13 @@ body {
   padding: 0 1.5rem;
 }
 .case-slot-tall { aspect-ratio: 4 / 3; }
-.case-body { max-width: 40rem; }
+/* a real screenshot inside a figure — no aspect forcing, so capture shape shows */
+.case-shot { display: block; width: 100%; height: auto; }
+/* the reading column is the prose, not the box — a figure inside .case-body
+   still spans the full page width, the same as the lead figure above it */
+.case-body { max-width: none; }
 .case-body h2 {
+  max-width: 40rem;
   margin: 2.6rem 0 0.7rem;
   font-family: var(--serif);
   font-weight: 400;
@@ -619,8 +642,9 @@ body {
   line-height: 1.05;
 }
 .case-body h2:first-of-type { margin-top: 0; }
-.case-body p { margin: 0; color: var(--ink-2); overflow-wrap: anywhere; }
+.case-body p { max-width: 40rem; margin: 0; color: var(--ink-2); overflow-wrap: anywhere; }
 .case-body p + p { margin-top: 0.85rem; }
+.case > .btn { margin-top: 2.6rem; display: inline-block; }
 .case .cta { margin-top: 2.6rem; display: inline-block; }
 
 /* ---------- 404 ---------- */

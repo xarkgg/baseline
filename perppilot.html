@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Case study: PerpPilot. Built by Najimdeen. Publish-ready as written. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PerpPilot — Baseline</title>
+  <meta name="description" content="A copy-trading co-pilot for Hyperliquid perpetuals: find the traders worth following, score them, and get alerted the moment their positions move." />
+  <meta property="og:title" content="PerpPilot — Baseline" />
+  <meta property="og:description" content="A copy-trading co-pilot for Hyperliquid perpetuals, built on the Nansen API." />
+  <meta property="og:image" content="assets/og-perppilot.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The PerpPilot dashboard, ranking Hyperliquid traders" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og-perppilot.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#171817" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="mark" href="index.html" aria-label="Baseline — home">
+      <img class="mark-img" src="assets/mark-light.png" alt="" />
+      <span class="mark-word">baseline</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-join" href="contact.html">Build with us</a>
+    </nav>
+  </header>
+
+  <main id="main" class="page case">
+    <p class="case-back"><a href="work.html">← All work</a></p>
+
+    <div class="page-head">
+      <p class="kicker">Case study · Najimdeen</p>
+      <h1>PerpPilot</h1>
+      <p class="lede">Find the Hyperliquid traders actually worth following, see whether their record holds up, and get told the moment they move — before the crowd does.</p>
+    </div>
+
+    <div class="case-meta" aria-label="Project facts">
+      <span>Full-stack web app</span>
+      <span>Python, FastAPI, Nansen API</span>
+      <span>Meridian Buildathon</span>
+      <span>Live · access-token gated</span>
+    </div>
+
+    <div class="case-links">
+      <a href="https://perppilot.onrender.com">Live app ↗</a>
+      <a href="https://github.com/TheRealNajim/PerpPilot">Repo ↗</a>
+    </div>
+
+    <figure class="case-fig">
+      <img class="case-shot" src="assets/perppilot-app.webp" alt="The PerpPilot dashboard: a ranked table of Hyperliquid traders with PnL, ROI, volume, trades and top positions." width="1500" height="1000" loading="lazy" />
+      <figcaption>The leaderboard. A trader row is PnL, ROI, volume and open positions over the last seven days — the header shows API calls issued and credits left.</figcaption>
+    </figure>
+
+    <section class="case-body">
+      <h2>The problem</h2>
+      <p>"Copy the smart money" is easy to say and hard to check. A leaderboard tells you who is up this week; it does not tell you whether that is one lucky position, how much risk they took to get there, or that they just flipped their whole book. The information existed — in raw position and trade endpoints — but nothing turned it into a decision.</p>
+
+      <h2>The constraints</h2>
+      <p>Every question costs an API credit, and the budget is not the user's. The whole design had to respect that: poll intervals tuned so a modest credit balance lasts hours, a pause switch that halts all calls while keeping the dashboard up on last-known data, and a header meter that counts every call issued. The buildathon also wants 1,000+ calls logged, which quietly argues against the caching you would normally reach for.</p>
+
+      <h2>What we built</h2>
+      <p>Four background loops — leaderboard, positions, trade history, and a smart-money feed — each with its own interval, feeding a dashboard that diffs live positions to fire alerts: open, close, flip, increase, decrease, and a near-liquidation warning that fires once on entering the danger zone rather than every poll. Two of those signals only exist because of the diff: a <em class="em">confluence</em> alert when two or more tracked traders take the same side of the same coin within fifteen minutes, and a Copy Score that folds win rate, profit factor, trade count and momentum into one 0–100 number, minus a penalty for risk.</p>
+
+      <figure class="case-fig">
+        <img class="case-shot" src="assets/perppilot-repo.webp" alt="The PerpPilot repository README: features, the four Nansen endpoints used, and run instructions." width="1500" height="1125" loading="lazy" />
+        <figcaption>The repo documents which four Nansen endpoints carry the product, and what each loop costs in credits.</figcaption>
+      </figure>
+
+      <h2>What was hard</h2>
+      <p>Sharing the bill. The live app sits behind an access token, which looks unfriendly until you see why: every visitor shares one set of Nansen credits, so an open dashboard is an open wallet. The token gate locks every API route except the health check. The same thinking explains the pause button — it stops the burning without taking the data away. The honest cost is that a free host's disk is ephemeral, so the watchlist resets on restart; state lives on disk and does not survive a redeploy.</p>
+
+      <h2>Where it landed</h2>
+      <p>Running on Render, working in two modes: live against Nansen when a key is present, and a self-contained market simulator when it is not, so the whole UI is explorable without spending anything. The demo-data path is not a stub — it is the same code path fed by a simulated market, which is how the app is testable at all without a credit meter running.</p>
+    </section>
+
+    <a class="btn" href="contact.html">Build with us</a>
+  </main>
+
+  <footer class="bottom">
+    <p>© Baseline — an open-source engineering collective</p>
+    <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
+  </footer>
+</body>
+</html>
