@@ -61,6 +61,7 @@ re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 | PerpPilot | `perppilot.html` | Case study — Hyperliquid copy-trading co-pilot (Najim) |
 | Zac | `zac.html` | Case study — private Zcash payments by name (Mhizter) |
 | Contact | `contact.html` | One address, the people, contributors welcome |
+| Resources | `resources.html` | The free tier, catalogued — engineering services with a real free tier and the limit on each (from free-for.dev) |
 | Case template | `case.html` | `noindex` template for new deep-dives (see "Case studies") |
 | 404 | `404.html` | "404 — this page went out for a walk" |
 
@@ -94,6 +95,20 @@ it, replace every `[bracketed]` line with real detail, capture the live app into
 actually have — every published case study names its own gaps (unreviewed
 contracts, testnet fixtures, an unaudited build) rather than implying cover that
 isn't there.
+
+## Resources
+
+`resources.html` is a reference, not a case study: it restates, in prose, the
+engineering-relevant service tiers catalogued by
+[free-for.dev](https://github.com/ripienaar/free-for-dev). It is organised as
+short articles — one per category — each followed by a `.refs` list naming a few
+services and the free-tier limit. The figures are transcribed, never estimated,
+and the page's final section says so and credits the source.
+
+To update it: re-read the source's README (retrieved-on date is in the page
+comment and the closing section), correct any changed numbers, and keep the
+per-section shape. If a whole category changes shape, add or remove a
+`<section class="wiki-sec">` and its entry in the `.contents` index together.
 
 ## Editing
 
