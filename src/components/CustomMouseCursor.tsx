@@ -12,9 +12,8 @@ export default function CustomMouseCursor() {
     const cursor = new CustomCursor({
       innerSize: 9,
       outerSize: 24,
-      // The ground is dark on every page, so the cursor reads light.
-      innerColor: "oklch(0.955 0.005 95)",
-      outerColor: "oklch(0.955 0.005 95 / 0.5)",
+      innerColor: "#000000",
+      outerColor: "rgba(0, 0, 0, 0.55)",
       smoothness: 0.24,
       hideDefault: true,
     });
