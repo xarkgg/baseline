@@ -649,41 +649,248 @@ body {
 
 /* ---------- reference page (resources.html) ---------- */
 
-/* the contents list — a numbered index that doubles as in-page navigation */
-.contents {
-  margin: clamp(2rem, 6vh, 3rem) 0 0;
-  border-top: 1px solid var(--line);
+/* A docs shell: a sticky index on the left, the reading column in the middle,
+ * a rail on the right that tracks the group being read. The same three
+ * columns stack into one column on phones, where the index turns into a
+ * two-column table of contents placed between the title and the articles. */
+
+.docs { max-width: 76rem; }
+.docs-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 11rem);
+  grid-template-areas:
+    "side head toc"
+    "side main toc";
+  grid-template-rows: auto 1fr;
+  gap: 0 clamp(1.4rem, 3.2vw, 3rem);
+  align-items: start;
+}
+.docs-head { grid-area: head; min-width: 0; max-width: 42rem; }
+.docs-main { grid-area: main; min-width: 0; }
+.docs-side { grid-area: side; }
+.docs-toc { grid-area: toc; }
+
+.docs h1 { margin: 0 0 0.7rem; font-size: clamp(2.2rem, 5.6vw, 3.3rem); }
+.docs-head .lede { max-width: 42ch; }
+
+/* the two callouts under the title */
+.docs-callouts { display: grid; gap: 0.55rem; margin: 1.5rem 0 0; }
+.docs-callout {
+  display: grid;
+  grid-template-columns: 1.35rem minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(249, 249, 249, 0.035);
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.docs-callout p { margin: 0; }
+.docs-callout strong { color: var(--ink); font-weight: 500; }
+.docs-callout svg { width: 1.35rem; height: 1.35rem; color: var(--ink-2); }
+.docs-callout a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.docs-callout a:hover { color: var(--accent); }
+.docs-callout.is-accent {
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 34%, transparent);
+}
+.docs-callout.is-accent svg { color: var(--accent); }
+
+/* the left index */
+.docs-side {
+  position: sticky;
+  top: 4.9rem;
+  align-self: start;
+  max-height: calc(100svh - 6rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 1.1rem 0.5rem 0;
+  border-right: 1px solid var(--line);
+  scrollbar-width: thin;
+}
+.docs-side-top {
+  display: grid;
+  gap: 0.05rem;
+  margin: 0 0 1.1rem;
+  padding: 0 0 1rem;
   border-bottom: 1px solid var(--line);
-  padding: 1.5rem 0 1.6rem;
-  max-width: 40rem;
 }
-.contents h2 {
-  margin: 0 0 0.9rem;
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.contents ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  columns: 2;
-  column-gap: 2.2rem;
-}
-.contents li { margin: 0 0 0.4rem; break-inside: avoid; }
-.contents li::before {
-  content: counter(list-item, decimal-leading-zero);
-  display: inline-block;
-  min-width: 1.9em;
-  color: var(--ink-3);
+.docs-side-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 -0.5rem;
+  padding: 0.32rem 0.5rem;
+  border-radius: 7px;
+  color: var(--ink-2);
   font-size: 0.82rem;
-  font-variant-numeric: tabular-nums;
+  text-decoration: none;
 }
-.contents a { color: var(--ink-2); text-decoration: none; font-size: 0.92rem; }
-.contents a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.docs-side-link:hover { background: rgba(249, 249, 249, 0.06); color: var(--ink); }
+.docs-side-link svg { width: 1rem; height: 1rem; flex: none; color: var(--ink-3); }
+.docs-side-link:hover svg { color: var(--ink-2); }
+
+/* the service filter — enhancement only, so it is hidden without JS */
+.vhid {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.docs-filter { position: relative; display: none; margin: 0 0 0.9rem; }
+.js .docs-filter { display: block; }
+.docs-filter input {
+  width: 100%;
+  padding: 0.48rem 1.9rem 0.48rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.84rem;
+}
+.docs-filter input::placeholder { color: var(--ink-3); }
+.docs-filter input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.docs-filter kbd {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.5rem;
+  padding: 0.08rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink-3);
+  font: 500 0.7rem/1.2 var(--sans);
+  pointer-events: none;
+}
+.docs-filter:focus-within kbd { opacity: 0; }
+.docs-filter-status {
+  margin: 0.45rem 0 0;
+  color: var(--ink-3);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+.docs-filter-status:empty { display: none; }
+
+.docs-nav { display: grid; gap: 0.05rem; }
+.docs-nav-group {
+  margin: 0.95rem 0 0.25rem;
+  padding: 0 0.5rem;
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.docs-nav-group:first-child { margin-top: 0; }
+.docs-nav a {
+  display: block;
+  padding: 0.34rem 0.5rem;
+  border-radius: 7px;
+  color: var(--ink-2);
+  font-size: 0.84rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.docs-nav a:hover { background: rgba(249, 249, 249, 0.06); color: var(--ink); }
+.docs-nav a[aria-current] { background: rgba(249, 249, 249, 0.09); color: var(--ink); }
+.docs-nav a:focus-visible, .docs-toc a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* the filter hides rows with the `hidden` attribute — an author display rule
+   on the same element would otherwise beat the UA rule and leave them shown */
+.refs li[hidden],
+.docs-nav a[hidden],
+.docs-nav-group[hidden],
+.docs-toc a[hidden],
+.wiki-sec[hidden],
+.docs-start[hidden] { display: none; }
+
+/* the three cards under the title */
+.docs-start {
+  margin: clamp(2.2rem, 5vh, 3rem) 0 0;
+  padding-top: clamp(1.4rem, 4vh, 2rem);
+  border-top: 1px solid var(--line);
+}
+.docs h2 {
+  max-width: 40rem;
+  margin: 0 0 0.6rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.06;
+}
+.docs-start > p { max-width: 40rem; margin: 0 0 1.1rem; color: var(--ink-2); font-size: 0.95rem; }
+.docs-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.55rem; }
+.docs-card {
+  padding: 0.95rem 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.docs-card:hover { border-color: color-mix(in srgb, var(--ink) 34%, transparent); background: var(--surface-2); }
+.docs-card svg { width: 1.3rem; height: 1.3rem; margin: 0 0 0.7rem; color: var(--accent); }
+.docs-card h3 { margin: 0 0 0.2rem; color: var(--ink); font-size: 0.9rem; font-weight: 500; }
+.docs-card p { margin: 0; font-size: 0.82rem; line-height: 1.45; }
+
+.docs-body { margin-top: clamp(2.2rem, 5vh, 3rem); }
+.docs-main > .btn { margin: 2.6rem 0 0; display: inline-block; }
+.docs-empty {
+  margin: 2rem 0 0;
+  padding: 1rem 1.1rem;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+.docs-empty[hidden] { display: none; }
+
+/* the right rail */
+.docs-toc { position: sticky; top: 4.9rem; padding-top: 0.15rem; }
+.docs-toc-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.55rem;
+  color: var(--ink-2);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.docs-toc-title svg { width: 0.9rem; height: 0.9rem; color: var(--ink-3); }
+.docs-toc a {
+  display: block;
+  padding: 0.26rem 0 0.26rem 0.7rem;
+  border-left: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.docs-toc a:hover { color: var(--ink); }
+.docs-toc a[aria-current] { color: var(--ink); border-left-color: var(--accent); }
+.docs-toc-note {
+  margin: 0.9rem 0 0;
+  padding: 0.5rem 0 0 0.7rem;
+  border-left: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
 
 /* each section is a short article: a heading and flowing prose */
 .wiki-sec { scroll-margin-top: 5rem; }
@@ -736,8 +943,40 @@ body {
   font-size: 0.85rem;
 }
 
+@media (max-width: 64rem) {
+  .docs-grid {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    grid-template-areas:
+      "side head"
+      "side main";
+  }
+  .docs-toc { display: none; }
+}
+
+@media (max-width: 48rem) {
+  .docs-grid { display: block; }
+  .docs-side {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin: 1.6rem 0 0;
+    padding: 0 0 1.2rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .docs-nav {
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    column-gap: 0.9rem;
+    row-gap: 0.15rem;
+  }
+  .docs-nav-group { grid-column: 1 / -1; }
+  .docs-start { margin-top: 1.8rem; }
+}
+
 @media (max-width: 34rem) {
-  .contents ol { columns: 1; }
+  /* the header wraps onto two rows at this width, so an anchored section needs
+     more clearance than the 5rem the single-row header allows */
+  .wiki-sec { scroll-margin-top: 8.5rem; }
   .refs li { grid-template-columns: 1fr; gap: 0.25rem; }
 }
 

@@ -5,6 +5,11 @@
   README retrieved 16 November 2026). The figures are the vendors' own free-tier
   limits as that list states them; nothing here is estimated. When a tier changes,
   the vendor's own pricing page is the authority — this page is a starting point.
+
+  Laid out as documentation: a sticky grouped index on the left, the articles in
+  the middle, a group rail on the right. The index tracks the section being read
+  and doubles as a filter over the services; both are progressive enhancements in
+  main.js, so the page still reads as one column with JavaScript off.
 -->
 <html lang="en">
 <head>
@@ -24,6 +29,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <meta name="theme-color" content="#171817" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -41,38 +47,108 @@
     </nav>
   </header>
 
-  <main id="main" class="page case">
-    <div class="page-head">
-      <p class="kicker">Reference</p>
-      <h1>The free tier, catalogued.</h1>
-      <p class="lede">A working reference to the services that give engineers a real free tier — what each one provides, and the limit worth knowing before you depend on it. Written as short articles; drawn from free-for.dev and checked on 16 November 2026.</p>
-    </div>
+  <main id="main" class="page docs">
+    <div class="docs-grid">
 
-    <nav class="contents" aria-label="Contents">
-      <h2>Contents</h2>
-      <ol>
-        <li><a href="#scope">Scope and method</a></li>
-        <li><a href="#source-hosting">Source code hosting</a></li>
-        <li><a href="#ci">Continuous integration and delivery</a></li>
-        <li><a href="#testing">Testing and quality assurance</a></li>
-        <li><a href="#code-quality">Code quality and review</a></li>
-        <li><a href="#security">Security and certificates</a></li>
-        <li><a href="#monitoring">Monitoring and uptime</a></li>
-        <li><a href="#logging">Logging and error tracking</a></li>
-        <li><a href="#hosting">Application hosting</a></li>
-        <li><a href="#baas">Backend as a service</a></li>
-        <li><a href="#data">Managed data services</a></li>
-        <li><a href="#cdn">Content delivery and DNS</a></li>
-        <li><a href="#email">Transactional email</a></li>
-        <li><a href="#auth">Authentication and authorization</a></li>
-        <li><a href="#storage">Storage and media</a></li>
-        <li><a href="#ai">Generative AI and machine learning</a></li>
-        <li><a href="#tracking">Issue tracking and project management</a></li>
-        <li><a href="#caveats">Caveats and sources</a></li>
-      </ol>
-    </nav>
+      <header class="docs-head">
+        <p class="kicker">Reference</p>
+        <h1>The free tier, catalogued.</h1>
+        <p class="lede">A working reference to the services that give engineers a real free tier — what each one provides, and the limit worth knowing before you depend on it. Written as short articles; drawn from free-for.dev and checked on 16 November 2026.</p>
 
-    <section class="case-body">
+        <div class="docs-callouts">
+          <div class="docs-callout is-accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.4" cy="10.2" r="6.1"/><path d="M15 15.2 Q 17.3 17.4 19.9 20"/></svg>
+            <p><strong>A curated slice, not a mirror.</strong> Sixteen categories chosen for the work this collective does — build, ship and operate. The complete catalogue runs wider. <a href="#scope">Read the method</a></p>
+          </div>
+          <div class="docs-callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.6 15.1 Q 11.9 15.4 20.4 15.1"/><path d="M3.8 14.9 Q 3.4 12.1 5.9 12 Q 12.2 11.7 18.7 11.9 Q 20.6 11.9 20.4 14.9"/><path d="M7.1 15.1 7.2 12"/><path d="M10.6 15.2 10.7 13.1"/><path d="M14.1 15.2 14.2 11.9"/><path d="M17.6 15.2 17.6 13"/></svg>
+            <p><strong>Every limit is quoted.</strong> Each figure is the vendor's own, as the source recorded it on 16 November 2026. The pricing page still governs. <a href="#caveats">How to read this</a></p>
+          </div>
+        </div>
+      </header>
+
+      <aside class="docs-side">
+        <div class="docs-side-top">
+          <a class="docs-side-link" href="https://free-for.dev" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.4 Q 8.4 4.7 4.4 5.5 Q 4.2 12 4.4 18.5 Q 8.4 17.7 12 19.5"/><path d="M12 6.4 Q 15.6 4.7 19.6 5.5 Q 19.8 12 19.6 18.5 Q 15.6 17.7 12 19.5"/><path d="M12 6.4 12 19.5"/></svg>
+            The complete list
+          </a>
+          <a class="docs-side-link" href="https://github.com/ripienaar/free-for-dev" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="18.2" r="2.4"/><circle cx="7" cy="5.8" r="2.4"/><circle cx="16.4" cy="5.8" r="2.4"/><path d="M7 8.4 Q 7.1 13.7 12.4 14.6 Q 16.2 15.1 16.4 10.4"/></svg>
+            Source on GitHub
+          </a>
+          <a class="docs-side-link" href="contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg>
+            Build with us
+          </a>
+        </div>
+
+        <div class="docs-filter">
+          <label class="vhid" for="svc-filter">Filter the services on this page</label>
+          <input id="svc-filter" type="search" placeholder="Filter services" autocomplete="off" spellcheck="false" />
+          <kbd aria-hidden="true">/</kbd>
+          <p class="docs-filter-status" id="svc-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <nav class="docs-nav" aria-label="Sections on this page">
+          <p class="docs-nav-group">Start here</p>
+          <a href="#scope">Scope and method</a>
+
+          <p class="docs-nav-group">Build and ship</p>
+          <a href="#source-hosting">Source code hosting</a>
+          <a href="#ci">Continuous integration and delivery</a>
+          <a href="#testing">Testing and quality assurance</a>
+          <a href="#code-quality">Code quality and review</a>
+          <a href="#security">Security and certificates</a>
+
+          <p class="docs-nav-group">Host and operate</p>
+          <a href="#monitoring">Monitoring and uptime</a>
+          <a href="#logging">Logging and error tracking</a>
+          <a href="#hosting">Application hosting</a>
+
+          <p class="docs-nav-group">Data and services</p>
+          <a href="#baas">Backend as a service</a>
+          <a href="#data">Managed data services</a>
+          <a href="#cdn">Content delivery and DNS</a>
+          <a href="#email">Transactional email</a>
+          <a href="#auth">Authentication and authorization</a>
+          <a href="#storage">Storage and media</a>
+
+          <p class="docs-nav-group">Applied AI and teams</p>
+          <a href="#ai">Generative AI and machine learning</a>
+          <a href="#tracking">Issue tracking and project management</a>
+
+          <p class="docs-nav-group">Practicalities</p>
+          <a href="#caveats">Caveats and sources</a>
+        </nav>
+      </aside>
+
+      <div class="docs-main">
+        <section class="docs-start" aria-labelledby="start-heading">
+          <h2 id="start-heading">Start here</h2>
+          <p>Three categories to begin with when the aim is a project running in public: where the code lives, where it is served from, and how it tells you it is still up.</p>
+          <div class="docs-cards">
+            <a class="docs-card" href="#source-hosting">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="18.2" r="2.4"/><circle cx="7" cy="5.8" r="2.4"/><circle cx="16.4" cy="5.8" r="2.4"/><path d="M7 8.4 Q 7.1 13.7 12.4 14.6 Q 16.2 15.1 16.4 10.4"/></svg>
+              <h3>Host the code</h3>
+              <p>Repositories, review and CI, at no cost.</p>
+            </a>
+            <a class="docs-card" href="#hosting">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.2" y="4.6" width="15.6" height="11.6" rx="2.2"/><path d="M4.5 8.4 Q 12.1 8.7 19.5 8.4"/><path d="M9.2 20.1 Q 12.1 19.7 15 20.1"/></svg>
+              <h3>Serve the build</h3>
+              <p>Static hosting, containers and previews.</p>
+            </a>
+            <a class="docs-card" href="#monitoring">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.9 12.6 Q 5.6 12.9 7.1 9.5 Q 8.8 5.4 10.4 13.9 Q 11.8 21.1 13.6 11.9 Q 14.6 6.9 16.2 10.6 Q 17.5 13.3 21.1 13.2"/></svg>
+              <h3>Watch it run</h3>
+              <p>Uptime checks, logs and error tracking.</p>
+            </a>
+          </div>
+        </section>
+
+        <p class="docs-empty" hidden>Nothing on this page matches that. Try a shorter term, or search <a href="https://free-for.dev" target="_blank" rel="noopener">free-for.dev</a> directly.</p>
+
+        <div class="docs-body">
 
       <section class="wiki-sec" id="scope">
         <h2>Scope and method</h2>
@@ -580,14 +656,32 @@
         <p class="src-note">Source: <a href="https://github.com/ripienaar/free-for-dev" target="_blank" rel="noopener">ripienaar/free-for-dev</a> · retrieved 16 November 2026 · the source repository carries no licence file, and every entry remains the factual claim of the vendor named against it.</p>
       </section>
 
-    </section>
+        </div>
 
-    <a class="btn" href="contact.html">Build with us</a>
+        <a class="btn" href="contact.html">Build with us</a>
+      </div>
+
+      <aside class="docs-toc" aria-label="On this page">
+        <p class="docs-toc-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.4 7.1 19.6 7"/><path d="M4.6 12 19.4 11.9"/><path d="M4.4 16.9 14.2 16.8"/></svg>
+          On this page
+        </p>
+        <a href="#scope">Start here</a>
+        <a href="#source-hosting">Build and ship</a>
+        <a href="#monitoring">Host and operate</a>
+        <a href="#baas">Data and services</a>
+        <a href="#ai">Applied AI and teams</a>
+        <a href="#caveats">Practicalities</a>
+        <p class="docs-toc-note">Sixteen categories, ninety-five services, each limit dated 16 November 2026.</p>
+      </aside>
+
+    </div>
   </main>
 
   <footer class="bottom">
     <p>© Baseline — an open-source engineering collective</p>
     <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>

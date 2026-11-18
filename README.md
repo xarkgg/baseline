@@ -108,7 +108,11 @@ and the page's final section says so and credits the source.
 To update it: re-read the source's README (retrieved-on date is in the page
 comment and the closing section), correct any changed numbers, and keep the
 per-section shape. If a whole category changes shape, add or remove a
-`<section class="wiki-sec">` and its entry in the `.contents` index together.
+`<section class="wiki-sec">` in `.docs-body`, its link in `.docs-nav` (under the
+right group heading) and, if the group itself is new, a group link in
+`.docs-toc`. The index marks the section being read and carries a filter over
+the services; both are enhancements in `main.js`, so the page still reads as one
+column with JavaScript off.
 
 ## Editing
 
@@ -119,8 +123,10 @@ per-section shape. If a whole category changes shape, add or remove a
   is one beat. Keep the supplied collective copy verbatim where it appears.
 - **Email:** `contact.html` and the closing form action in `index.html`
   (currently `kuskomanass@gmail.com`; swap when the team mailbox exists).
-- **Motion:** `main.js` only does scroll-reveal for `.reveal`; it is progressive
-  (the `.js` class is set inline in `<head>`, so nothing hides without JS).
+- **Motion:** `main.js` does scroll-reveal for `.reveal`, and on the reference
+  page it marks the section being read and runs the service filter. Both are
+  progressive (the `.js` class is set inline in `<head>`, so nothing hides
+  without JS).
 - **Motif bands:** drop `<div class="figures" aria-hidden="true"></div>` where
   you want one; use `<div class="band">…</div>` when it needs its own strip of
   surface and rules. Sizing and tint are CSS variables on `.figures`.
