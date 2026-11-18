@@ -29,6 +29,7 @@
     </a>
     <nav class="site-nav" aria-label="Primary">
       <a href="work.html" aria-current="page">Work</a>
+      <a href="notes.html">Notes</a>
       <a href="resources.html">Resources</a>
       <a href="contact.html">Contact</a>
       <a class="nav-join" href="contact.html">Build with us</a>
@@ -54,7 +55,12 @@
     <div class="case-links">
       <a href="https://perppilot.onrender.com">Live app ↗</a>
       <a href="https://github.com/TheRealNajim/PerpPilot">Repo ↗</a>
+      <button class="copy-md" type="button" data-copy-md hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.7" y="8.7" width="10.2" height="10.2" rx="2"/><path d="M15.3 5.8 Q 15.3 4.9 14.4 4.9 L5.9 4.9 Q 5 4.9 5 5.8 L5 14.3 Q 5 15.2 5.9 15.2"/></svg>
+        Copy as Markdown
+      </button>
     </div>
+    <p class="copy-status" data-copy-status role="status" aria-live="polite"></p>
 
     <figure class="case-fig">
       <img class="case-shot" src="assets/perppilot-app.webp" alt="The PerpPilot dashboard: a ranked table of Hyperliquid traders with PnL, ROI, volume, trades and top positions." width="1500" height="1000" loading="lazy" />
@@ -88,7 +94,9 @@
 
   <footer class="bottom">
     <p>© Baseline — an open-source engineering collective</p>
+    <p class="bottom-search"><button class="bottom-search-btn" type="button" data-search hidden>Search <kbd data-search-key>⌘K</kbd></button></p>
     <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>

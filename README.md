@@ -57,6 +57,7 @@ re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 | --- | --- | --- |
 | Home | `index.html` | Hero + the collective story: who we are, what we build, what gets in the way (light inversion), where we put our weight, the people, closing call |
 | Work | `work.html` | Three featured projects (one per member), each with a case study, plus "Also running" for the rest |
+| Notes | `notes.html` | The notes index — short posts, newest first |
 | Sherwood | `sherwood.html` | Case study — on-chain downside protection (Manass) |
 | PerpPilot | `perppilot.html` | Case study — Hyperliquid copy-trading co-pilot (Najim) |
 | Zac | `zac.html` | Case study — private Zcash payments by name (Mhizter) |
@@ -64,6 +65,10 @@ re-fill or resize, override `--fig-h` / `--fig-src` / `--fig-opacity`.
 | Resources | `resources.html` | The free tier, catalogued — engineering services with a real free tier and the limit on each (from free-for.dev) |
 | Case template | `case.html` | `noindex` template for new deep-dives (see "Case studies") |
 | 404 | `404.html` | "404 — this page went out for a walk" |
+
+The primary nav is five items wide. Below 34rem the `Build with us` pill stands
+down so the sticky header stays on one row — it points at the same page as
+`Contact`, which stays in the nav.
 
 There is no separate team page: the collective framing lives on Home and
 Contact, and `+ You, maybe` stands in the people list for contributors who
@@ -96,6 +101,25 @@ actually have — every published case study names its own gaps (unreviewed
 contracts, testnet fixtures, an unaudited build) rather than implying cover that
 isn't there.
 
+Each case study has a **Copy as Markdown** button in its links row, for anyone
+writing about the work. The Markdown is built from the page at click time —
+headings, links, inline code, figures with absolute image URLs, and a source
+line — so there is no second copy of the text to keep in step. The button ships
+`hidden` and `main.js` reveals it, so it is never a dead control without
+JavaScript. `case.html` carries the same markup for new pages.
+
+## Notes
+
+`notes.html` is the index; every post is its own file (`note-free-tier.html`,
+`note-gate.html`, `note-open.html`), so a note has a stable URL and can be shared
+on its own. One rule for the writing: a note restates and connects what the site
+already claims — it does not invent facts, figures or history.
+
+To add one: copy the newest `note-*.html`, change the slug in the filename and
+the title, date and body inside it, point the previous note's "Next" line at it,
+then add a `.note-row` item to `notes.html` (newest first) and an entry to the
+`FIXED` search list in `main.js`.
+
 ## Resources
 
 `resources.html` is a reference, not a case study: it restates, in prose, the
@@ -114,6 +138,13 @@ right group heading) and, if the group itself is new, a group link in
 the services; both are enhancements in `main.js`, so the page still reads as one
 column with JavaScript off.
 
+Every service row also carries a star (revealed on hover, always visible on
+touch). Stars are kept in `localStorage` under `baseline.shortlist.v1` —
+nothing leaves the browser — and once something is kept a small block appears
+above the index with the count, a "Copy as Markdown" of the list grouped by
+section, and Clear. The stars are built by `main.js`, so with JavaScript off
+the catalogue is byte-for-byte the same page.
+
 ## Editing
 
 - **Work content:** rows inline in `work.html`.
@@ -127,6 +158,12 @@ column with JavaScript off.
   page it marks the section being read and runs the service filter. Both are
   progressive (the `.js` class is set inline in `<head>`, so nothing hides
   without JS).
+- **Search:** the palette (`⌘K` / `Ctrl K`, plus the footer trigger) is built
+  by `main.js`. Pages, notes and case studies come from the `FIXED` array;
+  the reference page's sections and services are read from the DOM when you are
+  on that page, otherwise fetched once and cached in `sessionStorage`
+  (`baseline.search.v1`, six-hour TTL). A new page or note has to be added to
+  `FIXED` to be findable.
 - **Motif bands:** drop `<div class="figures" aria-hidden="true"></div>` where
   you want one; use `<div class="band">…</div>` when it needs its own strip of
   surface and rules. Sizing and tint are CSS variables on `.figures`.

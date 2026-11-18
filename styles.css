@@ -998,6 +998,339 @@ body {
 }
 .lost p { margin: 0 0 2rem; color: var(--ink-2); }
 
+/* ---------- notes (notes.html and the note-*.html pages) ---------- */
+
+.notes {
+  margin: clamp(1.6rem, 4vh, 2.4rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  max-width: 48rem;
+}
+.note-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.1rem 1.2rem;
+  padding: 1.15rem 0.2rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: padding 0.3s var(--ease), background 0.3s var(--ease);
+}
+.note-row:hover, .note-row:focus-visible {
+  padding-left: 0.7rem;
+  background: rgba(249, 249, 249, 0.04);
+  outline: none;
+}
+.note-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.4vw, 1.62rem);
+  line-height: 1.1;
+}
+.note-date {
+  color: var(--ink-3);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.note-sum {
+  grid-column: 1 / -1;
+  margin: 0.1rem 0 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.note-back { margin: 0 0 1.6rem; }
+.note-back a {
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+.note-back a:hover, .note-back a:focus-visible { color: var(--ink); }
+
+.note-head { max-width: 40rem; }
+.note-head h1 {
+  margin: 0 0 0.8rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+.note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+}
+.note-body { max-width: 40rem; margin: clamp(2rem, 5vh, 2.8rem) 0 0; }
+.note-body p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.note-body p + p { margin-top: 0.95rem; }
+.note-body strong, .note-body em { color: var(--ink); }
+.note-body a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.note-body a:hover { color: var(--accent); }
+.note-body blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+  color: var(--ink-2);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+.note-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  max-width: 40rem;
+  margin: 2.8rem 0 0;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--line);
+}
+.note-nav a {
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+.note-nav a:hover { color: var(--accent); }
+
+/* ---------- copy as markdown (case-study pages) ---------- */
+
+.copy-md {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+.copy-md:hover {
+  border-color: color-mix(in srgb, var(--ink) 40%, transparent);
+  color: var(--ink);
+}
+.copy-md:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.copy-md svg { width: 0.95rem; height: 0.95rem; }
+/* the button ships hidden and JS reveals it — the author display rule above
+   would otherwise beat the UA `[hidden]` rule and show a dead control */
+.copy-md[hidden] { display: none; }
+.copy-md[data-copied="true"] {
+  border-color: color-mix(in srgb, var(--live) 50%, transparent);
+  color: var(--ink);
+}
+.copy-status {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+}
+.copy-status:empty { display: none; }
+.case-links { align-items: center; }
+
+/* ---------- resources shortlist ---------- */
+
+.refs li { position: relative; padding-right: 2.2rem; }
+.keep {
+  position: absolute;
+  top: 0.55rem;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease), color 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+.refs li:hover .keep,
+.keep:focus-visible,
+.keep[aria-pressed="true"] { opacity: 1; }
+.keep:hover { background: rgba(249, 249, 249, 0.08); color: var(--ink); }
+.keep[aria-pressed="true"] { color: var(--accent); }
+.keep:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.keep svg { width: 1rem; height: 1rem; }
+.keep[aria-pressed="true"] svg path { fill: currentColor; fill-opacity: 0.2; }
+@media (hover: none) { .keep { opacity: 0.7; } }
+
+.docs-keep {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.7rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+.docs-keep[hidden] { display: none; }
+.docs-keep p { margin: 0; }
+.docs-keep-title {
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.docs-keep-title span { color: var(--ink-2); font-weight: 400; }
+.docs-keep-note {
+  margin-top: 0.2rem !important;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.docs-keep-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+}
+.docs-keep-btn {
+  padding: 0.24rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(249, 249, 249, 0.04);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.docs-keep-btn:hover { border-color: color-mix(in srgb, var(--ink) 35%, transparent); color: var(--ink); }
+.docs-keep-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- site search (palette) ---------- */
+
+.bottom-search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.bottom-search-btn[hidden] { display: none; }
+.bottom-search-btn:hover { color: var(--ink); }
+.bottom-search-btn kbd {
+  padding: 0.05rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink-3);
+  font: 500 0.68rem/1.4 var(--sans);
+}
+
+.palette {
+  width: min(40rem, calc(100vw - 1.6rem));
+  max-height: min(74svh, 36rem);
+  margin: 10vh auto auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  overflow: hidden;
+}
+.palette::backdrop { background: rgba(8, 8, 8, 0.62); }
+.palette-form {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.palette-form svg { width: 1.05rem; height: 1.05rem; flex: none; color: var(--ink-3); }
+.palette input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+.palette input::placeholder { color: var(--ink-3); }
+.palette-form kbd {
+  padding: 0.08rem 0.32rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink-3);
+  font: 500 0.7rem/1.4 var(--sans);
+}
+.palette-results {
+  margin: 0;
+  padding: 0.3rem;
+  list-style: none;
+  max-height: min(56svh, 26rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.palette-results a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.1rem 0.8rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 7px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.palette-results a:hover,
+.palette-results a:focus-visible {
+  background: rgba(249, 249, 249, 0.07);
+  outline: none;
+}
+.palette-results a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.palette-name { font-size: 0.9rem; }
+.palette-kind {
+  color: var(--ink-3);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.palette-where {
+  grid-column: 1 / -1;
+  color: var(--ink-3);
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+.palette-status {
+  margin: 0;
+  padding: 0 0.9rem 0.7rem;
+  color: var(--ink-3);
+  font-size: 0.74rem;
+}
+
 /* ---------- scroll reveal (progressive enhancement) ---------- */
 
 .js .reveal {
@@ -1017,6 +1350,10 @@ body {
 
 @media (max-width: 34rem) {
   .site-header { flex-wrap: wrap; row-gap: 0.4rem; }
-  .site-nav { gap: 0.95rem; }
+  .site-nav { gap: 0.65rem 0.95rem; flex-wrap: wrap; justify-content: flex-end; }
+  /* five items never fit one line here, and letting the pill wrap turns the
+     sticky header into three rows on the narrowest phones. The pill points at
+     the same page as Contact, which stays, so drop it and keep one nav row. */
+  .site-nav .nav-join { display: none; }
   .story { padding-left: 1.15rem; padding-right: 1.15rem; }
 }

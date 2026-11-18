@@ -41,6 +41,7 @@
     </a>
     <nav class="site-nav" aria-label="Primary">
       <a href="work.html">Work</a>
+      <a href="notes.html">Notes</a>
       <a href="resources.html" aria-current="page">Resources</a>
       <a href="contact.html">Contact</a>
       <a class="nav-join" href="contact.html">Build with us</a>
@@ -88,6 +89,16 @@
           <input id="svc-filter" type="search" placeholder="Filter services" autocomplete="off" spellcheck="false" />
           <kbd aria-hidden="true">/</kbd>
           <p class="docs-filter-status" id="svc-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="docs-keep" data-keep-panel hidden>
+          <p class="docs-keep-title"><span data-keep-count>0</span> kept <span>for your stack</span></p>
+          <p class="docs-keep-note">Signed in nowhere, sent nowhere — kept in this browser only.</p>
+          <div class="docs-keep-actions">
+            <button class="docs-keep-btn" type="button" data-keep-copy>Copy as Markdown</button>
+            <button class="docs-keep-btn" type="button" data-keep-clear>Clear</button>
+          </div>
+          <p class="docs-keep-note" data-keep-status role="status" aria-live="polite"></p>
         </div>
 
         <nav class="docs-nav" aria-label="Sections on this page">
@@ -680,6 +691,7 @@
 
   <footer class="bottom">
     <p>© Baseline — an open-source engineering collective</p>
+    <p class="bottom-search"><button class="bottom-search-btn" type="button" data-search hidden>Search <kbd data-search-key>⌘K</kbd></button></p>
     <p><a href="work.html">All work <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
   </footer>
   <script src="main.js"></script>
