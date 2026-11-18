@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  NOTES — short writing from the collective. Each entry links to its own
+  `note-<slug>.html` page, so a note has a stable URL and can be shared alone.
+  To add one: copy the newest note page, change the slug in the filename and
+  the title/date inside it, then add a `.note-row` item here and a "Next" link
+  on the note before it.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes — Baseline</title>
+  <meta name="description" content="Short writing from the Baseline collective on what we build, how we work, and the parts of engineering that never make the documentation." />
+  <meta property="og:title" content="Notes — Baseline" />
+  <meta property="og:description" content="Short writing from the collective on what we build and how we work." />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Baseline — The Engineering Standard" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/og-image.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" sizes="64x64" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#171817" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="mark" href="index.html" aria-label="Baseline — home">
+      <img class="mark-img" src="assets/mark-light.png" alt="" />
+      <span class="mark-word">baseline</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html">Work</a>
+      <a href="notes.html" aria-current="page">Notes</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-join" href="contact.html">Build with us</a>
+    </nav>
+  </header>
+
+  <main id="main" class="page">
+    <div class="page-head">
+      <p class="kicker">Notes</p>
+      <h1>Thinking out loud.</h1>
+      <p class="lede">Short writing from the collective — what we build, how we work, and the parts of engineering that never make it into the documentation.</p>
+    </div>
+
+    <ul class="notes">
+      <li>
+        <a class="note-row" href="note-free-tier.html">
+          <span class="note-title">Why we catalogue the free tier</span>
+          <span class="note-date">16 Nov 2026</span>
+          <span class="note-sum">Ninety-five services in sixteen categories, and the only number that decides whether a free tier is usable: the limit.</span>
+        </a>
+      </li>
+      <li>
+        <a class="note-row" href="note-gate.html">
+          <span class="note-title">The gate is rarely the talent</span>
+          <span class="note-date">18 Nov 2026</span>
+          <span class="note-sum">Credentials, cost, opacity, and no first project — four walls that have nothing to do with ability.</span>
+        </a>
+      </li>
+      <li>
+        <a class="note-row" href="note-open.html">
+          <span class="note-title">What open means here</span>
+          <span class="note-date">18 Nov 2026</span>
+          <span class="note-sum">What the word buys you: the repository, the write-up, and the parts that did not go smoothly.</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="bottom">
+    <p>© Baseline — an open-source engineering collective</p>
+    <p class="bottom-search"><button class="bottom-search-btn" type="button" data-search hidden>Search <kbd data-search-key>⌘K</kbd></button></p>
+    <p><a href="resources.html">The free tier, catalogued <svg class="gl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M3.8 12.4 Q 10 11.3 17.9 12"/><path d="M18.2 12.1 Q 15.6 11.6 13 10.3"/><path d="M18.2 12.1 Q 15.9 12.5 13.6 13.9"/></svg></a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
