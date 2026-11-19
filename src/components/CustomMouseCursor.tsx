@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { CustomCursor } from "@/lib/mouse-animations/animations/cursor";
 import { Trail } from "@/lib/mouse-animations/animations/trail";
 
-const mint = "oklch(0.78 0.13 174)";
-
 export default function CustomMouseCursor() {
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)");
