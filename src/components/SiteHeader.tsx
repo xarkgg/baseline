@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactElement, type SVGProps } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import FlagGB from "country-flag-icons/react/3x2/GB";
 import FlagES from "country-flag-icons/react/3x2/ES";
 import FlagFR from "country-flag-icons/react/3x2/FR";
@@ -72,7 +72,7 @@ export default function SiteHeader() {
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        {menuOpen ? <X /> : <Menu />}
+        <span className="menu-icon" aria-hidden="true"><span /><span /><span /></span>
       </Button>
       <nav className={`main-nav${menuOpen ? " is-open" : ""}`} aria-label={t("Main navigation")}>
         <a href={homeHref} onClick={() => setMenuOpen(false)}>{t("Home")}</a>
@@ -80,6 +80,9 @@ export default function SiteHeader() {
         <a href="/resources" onClick={() => setMenuOpen(false)}>{t("Resources")}</a>
         <a href={teamHref} onClick={() => setMenuOpen(false)}>{t("Team")}</a>
         <a href={contactHref} onClick={() => setMenuOpen(false)}>{t("Contact")}</a>
+        <Button asChild size="sm" className="nav-cta mobile-nav-cta">
+          <a href={contactHref} onClick={() => setMenuOpen(false)}>{t("Build With Us")}</a>
+        </Button>
       </nav>
       <div className="header-actions">
         <details className="language-switcher" ref={languageRef}>
