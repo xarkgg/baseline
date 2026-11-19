@@ -16,6 +16,8 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   "Main navigation": { es: "Navegación principal", fr: "Navigation principale", de: "Hauptnavigation", pt: "Navegação principal", pcm: "Main navigation" },
   "Collaborate": { es: "Colabora", fr: "Collaborer", de: "Zusammenarbeiten", pt: "Colabore", pcm: "Make we work together" },
   "Build": { es: "Construye", fr: "Construisez", de: "Baue", pt: "Construa", pcm: "Build" },
+  "and": { es: "y", fr: "et", de: "und", pt: "e", pcm: "and" },
+  "Succeed with": { es: "alcanza el éxito con", fr: "réussir avec", de: "erfolgreich sein mit", pt: "tenha sucesso com", pcm: "succeed with" },
   "and Succeed with": { es: "y alcanza el éxito con", fr: "et réussir avec", de: "und erfolgreich sein mit", pt: "e tenha sucesso com", pcm: "and succeed with" },
   "We build products, improve how engineering is practised and make engineering & artificial intelligence accessible to everyone.": {
     es: "Creamos productos, mejoramos la práctica de la ingeniería y hacemos que la ingeniería y la inteligencia artificial sean accesibles para todos.",

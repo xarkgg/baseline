@@ -190,7 +190,12 @@ function App() {
           </div>
           <div className="hero-thread hero-thread-right" aria-hidden="true" />
           <div className="hero-thread thread-lower-right" aria-hidden="true" />
-          <h1>{t("Collaborate")} <span className="play-mark" aria-hidden="true">▶</span> {t("Build")}<br />{t("and Succeed with")}<br /><span className="highlight">Baseline<span className="tm-mark" aria-hidden="true" /></span></h1>
+          <h1>
+            <span className="hero-heading-line">{t("Collaborate")} <span className="play-mark" aria-hidden="true">▶</span></span>{" "}
+            <span className="hero-heading-line hero-heading-build-and">{t("Build")}<br className="hero-heading-desktop-break" /> {t("and")}</span>{" "}
+            <span className="hero-heading-line">{t("Succeed with")}</span><br className="hero-heading-desktop-break" />
+            <span className="hero-heading-line"><span className="highlight">Baseline<span className="tm-mark" aria-hidden="true" /></span></span>
+          </h1>
           <p className="hero-copy">{t("We build products, improve how engineering is practised and make engineering & artificial intelligence accessible to everyone.")}</p>
           <div className="contacts-actions" data-aos="fade-up" data-aos-delay="220">
             <a className="insight-card-contact contacts-email-pill" href="mailto:hello@ourbaseline.xyz">
