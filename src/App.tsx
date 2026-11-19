@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, ArrowUpRight, Check, ChevronUp, GitBranchPlus, Plus, UserRoundCheck, Warehouse } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronUp, GitBranchPlus, Mail, Plus, UserRoundCheck, Warehouse } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import SiteHeader from "@/components/SiteHeader";
+import StatValue from "@/components/StatValue";
 import { useI18n } from "@/i18n";
 import SiteFooter from "@/components/SiteFooter";
 import AOS from "@/lib/aos/aos";
@@ -27,8 +28,8 @@ const zacLiveUrl = "https://zacpay.netlify.app/";
 const githubProfiles = [
   { username: "xarkgg", tone: "blue", name: "Manass Kusko", photo: "/manasseh.jpg", cover: "/manasseh-cover.jpg", email: "manasseh@baseline.dev", site: "https://xarkgg.vercel.app/" },
   { username: "TheRealNajim", tone: "purple", name: "Najimdeen Ajadi", photo: "/najimdeen.jpg", cover: "/najimdeen-cover.jpeg", email: "najimdeen@baseline.dev", site: "https://github.com/TheRealNajim" },
-  { username: "TimothyBayode", tone: "green", name: "Timothy Bayode", photo: "/timothy.jpg", cover: "/timothy-cover.jpeg", email: "timothy@baseline.dev", site: "https://timothybayode.vercel.app/" },
-  { username: "mhizer-fatai", tone: "red", name: "Mhizer Fatai", photo: "/fatai.jpg", cover: "/fatai-cover.jpeg", email: "fatai@baseline.dev", site: "https://github.com/mhizer-fatai" },
+  { username: "TimothyBayode", tone: "orange", name: "Timothy Bayode", photo: "/timothy.jpg", cover: "/timothy-cover.jpeg", email: "timothy@baseline.dev", site: "https://timothybayode.vercel.app/" },
+  { username: "mhizer-fatai", tone: "green", name: "Mhizer Fatai", photo: "/fatai.jpg", cover: "/fatai-cover.jpeg", email: "fatai@baseline.dev", site: "https://github.com/mhizer-fatai" },
 ];
 
 type GitHubStats = { repositories: number; contributions: number; followers: number };
@@ -191,6 +192,16 @@ function App() {
           <div className="hero-thread thread-lower-right" aria-hidden="true" />
           <h1>{t("Collaborate")} <span className="play-mark" aria-hidden="true">▶</span> {t("Build")}<br />{t("and Succeed with")}<br /><span className="highlight">Baseline<span className="tm-mark" aria-hidden="true" /></span></h1>
           <p className="hero-copy">{t("We build products, improve how engineering is practised and make engineering & artificial intelligence accessible to everyone.")}</p>
+          <div className="contacts-actions" data-aos="fade-up" data-aos-delay="220">
+            <a className="insight-card-contact contacts-email-pill" href="mailto:hello@ourbaseline.xyz">
+              <span className="insight-card-contact-icon">
+                <Mail className="insight-card-contact-arrow" aria-hidden="true" />
+                <Check className="insight-card-contact-check" aria-hidden="true" />
+              </span>
+              <span className="insight-card-contact-label">{t("Get in Touch")}</span>
+              <span className="insight-card-contact-email">hello@ourbaseline.xyz</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -294,9 +305,9 @@ function App() {
                 </div>
                 <div className="insight-card-divider" aria-hidden="true" />
                 <div className="insight-card-stats">
-                  <div><strong className="insight-card-repositories-value"><Warehouse aria-hidden="true" />{stats?.repositories.toLocaleString() ?? "—"}</strong><span>{t("Repositories")}</span></div>
-                  <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" />{stats?.contributions.toLocaleString() ?? "—"}</strong><span>{t("Contributions")}</span></div>
-                  <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" />{stats?.followers.toLocaleString() ?? "—"}</strong><span>{t("Followers")}</span></div>
+                  <div><strong className="insight-card-repositories-value"><Warehouse aria-hidden="true" /><StatValue value={stats === null ? null : stats?.repositories} /></strong><span>{t("Repositories")}</span></div>
+                  <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" /><StatValue value={stats === null ? null : stats?.contributions} /></strong><span>{t("Contributions")}</span></div>
+                  <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" /><StatValue value={stats === null ? null : stats?.followers} /></strong><span>{t("Followers")}</span></div>
                 </div>
                 <div className="insight-card-contact">
                   <span className="insight-card-contact-icon">

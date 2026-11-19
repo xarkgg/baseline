@@ -332,7 +332,7 @@ export default function Resources() {
       </div>
 
       <section className="resource-cta content-wrap" data-aos="zoom-in-up">
-        <Button asChild className="nav-cta"><a href="/#get-started">{t("Build With Us")} <ArrowUpRight aria-hidden="true" /></a></Button>
+        <Button asChild className="nav-cta"><a href="/contact">{t("Build With Us")} <ArrowUpRight aria-hidden="true" /></a></Button>
       </section>
 
       <SiteFooter />

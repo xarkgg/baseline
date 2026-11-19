@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Check, ChevronUp, GitBranchPlus, Github, Plus, UserRoundCheck, Warehouse } from "lucide-react";
 
 import SiteHeader from "@/components/SiteHeader";
+import StatValue from "@/components/StatValue";
 import SiteFooter from "@/components/SiteFooter";
 import { useI18n } from "@/i18n";
 import AOS from "@/lib/aos/aos";
@@ -32,7 +33,7 @@ const people = [
   },
   {
     username: "TimothyBayode",
-    tone: "green",
+    tone: "orange",
     name: "Timothy Bayode",
     photo: "/timothy.jpg",
     cover: "/timothy-cover.jpeg",
@@ -43,7 +44,7 @@ const people = [
   },
   {
     username: "mhizer-fatai",
-    tone: "red",
+    tone: "green",
     name: "Mhizer Fatai",
     photo: "/fatai.jpg",
     cover: "/fatai-cover.jpeg",
@@ -161,9 +162,9 @@ export default function Team() {
                 </div>
                 <div className="insight-card-divider" aria-hidden="true" />
                 <div className="insight-card-stats">
-                  <div><strong className="insight-card-repositories-value"><Warehouse aria-hidden="true" />{stats?.repositories.toLocaleString() ?? "—"}</strong><span>{t("Repositories")}</span></div>
-                  <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" />{stats?.contributions.toLocaleString() ?? "—"}</strong><span>{t("Contributions")}</span></div>
-                  <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" />{stats?.followers.toLocaleString() ?? "—"}</strong><span>{t("Followers")}</span></div>
+                  <div><strong className="insight-card-repositories-value"><Warehouse aria-hidden="true" /><StatValue value={stats === null ? null : stats?.repositories} /></strong><span>{t("Repositories")}</span></div>
+                  <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" /><StatValue value={stats === null ? null : stats?.contributions} /></strong><span>{t("Contributions")}</span></div>
+                  <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" /><StatValue value={stats === null ? null : stats?.followers} /></strong><span>{t("Followers")}</span></div>
                 </div>
                 <a className="insight-card-contact" href={`mailto:${person.email}`}>
                   <span className="insight-card-contact-icon">
