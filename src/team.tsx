@@ -10,7 +10,6 @@ import "@/lib/aos/aos.css";
 const people = [
   {
     username: "xarkgg",
-    tone: "blue",
     name: "Manass Kusko",
     photo: "/manasseh.jpg",
     cover: "/manasseh-cover.jpg",
@@ -21,7 +20,6 @@ const people = [
   },
   {
     username: "TheRealNajim",
-    tone: "purple",
     name: "Najimdeen Ajadi",
     photo: "/najimdeen.jpg",
     cover: "/najimdeen-cover.jpeg",
@@ -32,7 +30,6 @@ const people = [
   },
   {
     username: "TimothyBayode",
-    tone: "green",
     name: "Timothy Bayode",
     photo: "/timothy.jpg",
     cover: "/timothy-cover.jpeg",
@@ -43,7 +40,6 @@ const people = [
   },
   {
     username: "mhizer-fatai",
-    tone: "red",
     name: "Mhizer Fatai",
     photo: "/fatai.jpg",
     cover: "/fatai-cover.jpeg",
@@ -53,6 +49,12 @@ const people = [
     site: "https://github.com/mhizer-fatai",
   },
 ];
+
+const contactTones: Record<string, string> = {
+  xarkgg: " contact-blue",
+  TheRealNajim: " contact-cyan",
+  TimothyBayode: " contact-orange",
+};
 
 type GitHubStats = { repositories: number; contributions: number; followers: number };
 
@@ -143,16 +145,11 @@ export default function Team() {
           {people.map((person, index) => {
             const stats = githubStats[person.username];
             return (
-              <article className={`insight-card tone-${person.tone}`} key={person.username} data-aos={["fade-up-right", "fade-up", "zoom-in-up", "fade-up-left"][index % 4]} data-aos-delay={index * 100} data-aos-duration="800">
+              <article className="insight-card" key={person.username} data-aos={["fade-up-right", "fade-up", "zoom-in-up", "fade-up-left"][index % 4]} data-aos-delay={index * 100} data-aos-duration="800">
                 <div className="insight-card-image" style={{ backgroundImage: `url(${person.cover})` }} />
                 <div className="insight-card-avatar"><img src={person.photo} alt="" loading="lazy" /></div>
                 <div className="insight-card-profile">
-                  <div className="insight-card-person">
-                    <strong>
-                      <a className="insight-card-name" href={person.github} target="_blank" rel="noreferrer" aria-label={`${person.name} on GitHub`}>{person.name}</a>
-                    </strong>
-                    <span>@{person.username}</span>
-                  </div>
+                  <div className="insight-card-person"><strong>{person.name}</strong><span>@{person.username}</span></div>
                   <div className="team-card-actions">
                     {person.twitter && <a className="team-card-github team-card-x" href={person.twitter} target="_blank" rel="noreferrer" aria-label={`${person.name} on X`}><img src="/x-logo.png" alt="" /></a>}
                     <a className="team-card-github" href={person.github} target="_blank" rel="noreferrer" aria-label={`${person.name} on GitHub`}><Github aria-hidden="true" /></a>
@@ -165,7 +162,7 @@ export default function Team() {
                   <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" />{stats?.contributions.toLocaleString() ?? "—"}</strong><span>{t("Contributions")}</span></div>
                   <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" />{stats?.followers.toLocaleString() ?? "—"}</strong><span>{t("Followers")}</span></div>
                 </div>
-                <a className="insight-card-contact" href={`mailto:${person.email}`}>
+                <a className={`insight-card-contact${contactTones[person.username] ?? ""}`} href={`mailto:${person.email}`}>
                   <span className="insight-card-contact-icon">
                     <ArrowRight className="insight-card-contact-arrow" aria-hidden="true" />
                     <Check className="insight-card-contact-check" aria-hidden="true" />

@@ -24,11 +24,13 @@ function formatStatCount(target: number, progress: number, suffix: string) {
 const sherwoodLiveUrl = "https://sherwoodnotes.vercel.app/";
 const zacLiveUrl = "https://zacpay.netlify.app/";
 
+const contactTones: Record<string, string> = { xarkgg: " contact-blue", TheRealNajim: " contact-cyan", TimothyBayode: " contact-orange" };
+
 const githubProfiles = [
-  { username: "xarkgg", tone: "blue", name: "Manass Kusko", photo: "/manasseh.jpg", cover: "/manasseh-cover.jpg", email: "manasseh@baseline.dev", site: "https://xarkgg.vercel.app/" },
-  { username: "TheRealNajim", tone: "purple", name: "Najimdeen Ajadi", photo: "/najimdeen.jpg", cover: "/najimdeen-cover.jpeg", email: "najimdeen@baseline.dev", site: "https://github.com/TheRealNajim" },
-  { username: "TimothyBayode", tone: "green", name: "Timothy Bayode", photo: "/timothy.jpg", cover: "/timothy-cover.jpeg", email: "timothy@baseline.dev", site: "https://timothybayode.vercel.app/" },
-  { username: "mhizer-fatai", tone: "red", name: "Mhizer Fatai", photo: "/fatai.jpg", cover: "/fatai-cover.jpeg", email: "fatai@baseline.dev", site: "https://github.com/mhizer-fatai" },
+  { username: "xarkgg", name: "Manass Kusko", photo: "/manasseh.jpg", cover: "/manasseh-cover.jpg", email: "manasseh@baseline.dev", site: "https://xarkgg.vercel.app/" },
+  { username: "TheRealNajim", name: "Najimdeen Ajadi", photo: "/najimdeen.jpg", cover: "/najimdeen-cover.jpeg", email: "najimdeen@baseline.dev", site: "https://github.com/TheRealNajim" },
+  { username: "TimothyBayode", name: "Timothy Bayode", photo: "/timothy.jpg", cover: "/timothy-cover.jpeg", email: "timothy@baseline.dev", site: "https://timothybayode.vercel.app/" },
+  { username: "mhizer-fatai", name: "Mhizer Fatai", photo: "/fatai.jpg", cover: "/fatai-cover.jpeg", email: "fatai@baseline.dev", site: "https://github.com/mhizer-fatai" },
 ];
 
 type GitHubStats = { repositories: number; contributions: number; followers: number };
@@ -275,7 +277,7 @@ function App() {
             const stats = githubStats[profile.username];
             return (
               <article
-                className={`insight-card tone-${profile.tone}`}
+                className={`insight-card teammate-card teammate-card-${profile.username.toLowerCase()}`}
                 key={profile.username}
                 data-aos={["fade-up-right", "fade-up", "zoom-in-up", "fade-up-left"][index % 4]}
                 data-aos-delay={index * 100}
@@ -284,12 +286,7 @@ function App() {
                 <div className="insight-card-image" style={{ backgroundImage: `url(${profile.cover})` }} />
                 <div className="insight-card-avatar"><img src={profile.photo} alt="" /></div>
                 <div className="insight-card-profile">
-                  <div className="insight-card-person">
-                    <strong>
-                      <a className="insight-card-name" href={`https://github.com/${profile.username}`} target="_blank" rel="noreferrer" aria-label={`${profile.name} on GitHub`}>{profile.name}</a>
-                    </strong>
-                    <span>@{profile.username}</span>
-                  </div>
+                  <div className="insight-card-person"><strong>{profile.name}</strong><span>@{profile.username}</span></div>
                   <a className="insight-card-open" href={profile.site} target="_blank" rel="noreferrer">{t("Visit")}</a>
                 </div>
                 <div className="insight-card-divider" aria-hidden="true" />
@@ -298,7 +295,7 @@ function App() {
                   <div><strong className="insight-card-contributions-value"><GitBranchPlus aria-hidden="true" />{stats?.contributions.toLocaleString() ?? "—"}</strong><span>{t("Contributions")}</span></div>
                   <div><strong className="insight-card-followers-value"><UserRoundCheck aria-hidden="true" />{stats?.followers.toLocaleString() ?? "—"}</strong><span>{t("Followers")}</span></div>
                 </div>
-                <div className="insight-card-contact">
+                <div className={`insight-card-contact${contactTones[profile.username] ?? ""}`}>
                   <span className="insight-card-contact-icon">
                     <ArrowRight className="insight-card-contact-arrow" aria-hidden="true" />
                     <Check className="insight-card-contact-check" aria-hidden="true" />

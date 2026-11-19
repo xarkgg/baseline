@@ -4,10 +4,8 @@
  *
  * Vendored from the local `aos-next` checkout so the project has no runtime
  * dependency on the package registry. Only changes from upstream: the SCSS
- * import is dropped (styles live in `aos.css`), the lodash throttle /
- * debounce helpers are inlined below, and `handleScroll` reveals what is left
- * once the page bottoms out — upstream can never reveal a block that sits
- * inside the final `offset` strip of the document.
+ * import is dropped (styles live in `aos.css`), and the lodash throttle /
+ * debounce helpers are inlined below.
  */
 
 type AosSettings = {
@@ -271,7 +269,7 @@ const detector = (() => {
   return { mobile, phone, tablet: () => mobile() && !phone() };
 })();
 
-const handleScroll = ($elements: AosElement[]) => {
+const handleScroll = ($elements: AosElement[]) =>
   $elements.forEach((el) => {
     const { options, position, node } = el;
     if (!options || !position) return;
@@ -301,21 +299,6 @@ const handleScroll = ($elements: AosElement[]) => {
       hide();
     }
   });
-
-  // `position.in` sits `offset` pixels above the viewport bottom, so a block
-  // inside that last strip of the document can never satisfy the rule above:
-  // the scroll stops short of its trigger point and it stays invisible no
-  // matter how far the reader scrolls. Once the page bottoms out, show
-  // whatever is left.
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  if (maxScroll <= 0 || window.pageYOffset < maxScroll - 2) return;
-
-  $elements.forEach((el) => {
-    if (el.animated || !el.options) return;
-    el.options.animatedClassNames.forEach((className) => el.node.classList.add(className));
-    el.animated = true;
-  });
-};
 
 /* ---------------------------------- aos ---------------------------------- */
 

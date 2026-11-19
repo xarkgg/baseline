@@ -2,17 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-/* Unageo — one variable file covering every weight the site asks for, so a
-   heading at 800 and a label at 400 come from the same face rather than a
-   synthetic bold. SIL Open Font License 1.1; the licence ships beside it. */
-@font-face {
-  font-family: "Unageo";
-  font-style: normal;
-  font-weight: 300 900;
-  font-display: swap;
-  src: url("./assets/fonts/unageo-var.woff2") format("woff2");
-}
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -62,20 +51,13 @@
   --ring: oklch(0.65 0.1 180);
   --coral: oklch(0.69 0.17 36);
   --mint: oklch(0.78 0.13 174);
-  /* One tone per person: card outline, Visit pill and the Get in Touch
-     sweep all read from it, so the four cannot drift apart. */
-  --tone-blue: oklch(0.66 0.16 258);
-  --tone-purple: oklch(0.67 0.19 305);
-  --tone-green: oklch(0.73 0.15 158);
-  --tone-red: oklch(0.65 0.19 27);
-  --on-accent: oklch(0.19 0.01 60);
   --periwinkle: oklch(0.65 0.17 267);
   --butter: oklch(0.88 0.16 98);
   --hero-wash: oklch(0.963 0.018 96);
   --canopy-width: clamp(56px, 8.2vw, 92px);
   --canopy-depth: clamp(24px, 3.2vw, 36px);
   --orbit-size: 96px;
-  --font-sans: "Unageo", system-ui, sans-serif;
+  --font-sans: "Manrope", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -235,29 +217,19 @@ main { overflow: hidden; }
 .insight-row .insight-cards { width: min(1200px, calc(100vw - 64px)); }
 .insight-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
 .insight-card { display: flex; height: clamp(330px, 30vw, 360px); flex-direction: column; padding: 16px; border-radius: 16px; background: var(--card); box-shadow: 0 6px 20px color-mix(in oklab, var(--foreground) 5%, transparent); }
-.tone-blue { --tone: var(--tone-blue); }
-.tone-purple { --tone: var(--tone-purple); }
-.tone-green { --tone: var(--tone-green); }
-.tone-red { --tone: var(--tone-red); }
-.insight-card.tone-blue, .insight-card.tone-purple, .insight-card.tone-green, .insight-card.tone-red {
-  border: 1px solid color-mix(in oklab, var(--tone) 58%, transparent);
-  box-shadow: 0 6px 20px color-mix(in oklab, var(--tone) 14%, transparent), 0 3px 12px color-mix(in oklab, var(--foreground) 6%, transparent);
-}
+.insight-row .teammate-card { border: .75px solid var(--teammate-accent); box-shadow: 0 5px 16px color-mix(in oklab, var(--teammate-accent) 11%, transparent), 0 3px 12px color-mix(in oklab, var(--foreground) 4%, transparent); }
+.insight-row .teammate-card-xarkgg { --teammate-accent: #4d7bea; }
+.insight-row .teammate-card-therealnajim { --teammate-accent: #00a6b3; }
+.insight-row .teammate-card-timothybayode { --teammate-accent: #fb5f00; }
+.insight-row .teammate-card-mhizer-fatai { --teammate-accent: oklch(0.52 0.14 158); }
 .insight-card-image { width: 100%; height: 30%; border-radius: 12px; background-position: center; background-repeat: no-repeat; background-size: cover; }
 .insight-card-avatar { position: relative; width: 70px; height: 70px; margin: -22px 0 0 14px; overflow: hidden; border: 3px solid var(--card); border-radius: 50%; }
 .insight-card-avatar img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 .insight-card-profile { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 5px 0 0; text-align: left; }
 .insight-card-person { display: grid; min-width: 0; gap: 0; margin-left: 14px; }
 .insight-card-profile strong { font-size: 15px; font-weight: 800; line-height: 1.25; }
-/* The name is the GitHub link; the Visit pill is the portfolio. */
-.insight-card-name { color: inherit; text-decoration: none; }
-.insight-card-name:hover { color: var(--coral); text-decoration: underline; text-underline-offset: 3px; }
-.insight-card-name:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; border-radius: 3px; }
 .insight-card-profile span { color: var(--muted-foreground); font-size: 12px; line-height: 1.25; }
-.insight-card-open { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; padding: 7px 16px; border: 0; border-radius: 999px; background: var(--foreground); color: var(--background); font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.2s ease, transform 0.15s ease; }
-.insight-card.tone-blue .insight-card-open, .insight-card.tone-purple .insight-card-open, .insight-card.tone-green .insight-card-open, .insight-card.tone-red .insight-card-open { background: var(--tone); color: var(--on-accent); }
-.insight-card.tone-blue .insight-card-open:hover, .insight-card.tone-purple .insight-card-open:hover, .insight-card.tone-green .insight-card-open:hover, .insight-card.tone-red .insight-card-open:hover { background: color-mix(in oklab, var(--tone) 84%, #fff); }
-.insight-card-open:active { transform: scale(0.97); }
+.insight-card-open { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; padding: 7px 16px; border: 0; border-radius: 999px; background: var(--foreground); color: var(--background); font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; }
 .insight-card-divider { width: 100%; height: 1px; margin-top: 10px; background: var(--border); }
 .insight-card-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 18px; text-align: center; }
 .insight-card-stats > div { display: grid; gap: 4px; min-width: 0; }
@@ -266,12 +238,15 @@ main { overflow: hidden; }
 .insight-card-repositories-value svg, .insight-card-contributions-value svg, .insight-card-followers-value svg { width: 14px; height: 14px; color: #000; stroke-width: 2; }
 .insight-card-stats span { color: var(--muted-foreground); font-size: 9px; line-height: 1.2; }
 .insight-card-contact { position: relative; isolation: isolate; overflow: hidden; display: flex; flex: 0 0 auto; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; min-height: 48px; margin-top: 30px; padding: 4px 8px; border-radius: 999px; background: linear-gradient(105deg, #050505 0%, #181818 82%, #b8b8b8 100%); color: #fff; font-size: 14px; font-weight: 500; text-align: center; cursor: pointer; }
-.insight-card-contact::before { position: absolute; z-index: -1; inset: 0; content: ""; border-radius: inherit; background: linear-gradient(105deg, color-mix(in oklab, var(--tone, var(--mint)) 84%, #000) 0%, color-mix(in oklab, var(--tone, var(--mint)) 68%, #000) 82%, color-mix(in oklab, var(--tone, var(--mint)) 42%, #fff) 100%); opacity: 0; transition: opacity 0.55s ease; }
+.insight-card-contact::before { position: absolute; z-index: -1; inset: 0; content: ""; border-radius: inherit; background: linear-gradient(105deg, oklch(0.52 0.14 158) 0%, oklch(0.63 0.15 162) 82%, oklch(0.9 0.1 165) 100%); opacity: 0; transition: opacity 0.55s ease; }
+.contact-blue::before { background: linear-gradient(105deg, #4d7bea 0%, #4d7bea 82%, #fff 100%); }
+.contact-orange::before { background: linear-gradient(105deg, #fb5f00 0%, #fb5f00 82%, #fff 100%); }
+.contact-cyan::before { background: linear-gradient(105deg, #00a6b3 0%, #00a6b3 82%, #fff 100%); }
 .insight-card-contact:hover::before { opacity: 1; }
 .insight-card-contact-icon { position: absolute; top: 50%; left: 12px; display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: #fff; transform: translateY(-50%); transition: left 0.65s cubic-bezier(0.4, 0, 0.2, 1); }
 .insight-card-contact:hover .insight-card-contact-icon { left: calc(100% - 40px); }
 .insight-card-contact-icon svg { grid-area: 1 / 1; width: 16px; height: 16px; color: var(--foreground); stroke-width: 2; transition: opacity 0.4s ease, transform 0.4s ease; }
-.insight-card-contact-icon .insight-card-contact-check { color: var(--tone, oklch(0.55 0.14 158)); opacity: 0; transform: scale(0.5) rotate(-25deg); }
+.insight-card-contact-icon .insight-card-contact-check { color: oklch(0.55 0.14 158); opacity: 0; transform: scale(0.5) rotate(-25deg); }
 .insight-card-contact:hover .insight-card-contact-arrow { opacity: 0; transform: scale(0.5) rotate(25deg); }
 .insight-card-contact:hover .insight-card-contact-check { opacity: 1; transform: scale(1) rotate(0); }
 .insight-card-contact-label, .insight-card-contact-email { position: absolute; left: 50%; line-height: 1; transform: translateX(-50%); white-space: nowrap; transition: opacity 0.45s ease, transform 0.45s ease, left 0.45s ease; }
