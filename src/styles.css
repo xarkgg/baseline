@@ -56,7 +56,7 @@
   --tone-blue: oklch(0.66 0.16 258);
   --tone-purple: oklch(0.67 0.19 305);
   --tone-green: oklch(0.73 0.15 158);
-  --tone-red: oklch(0.65 0.19 27);
+  --tone-orange: oklch(0.72 0.17 52);
   --on-accent: oklch(0.19 0.01 60);
   --periwinkle: oklch(0.65 0.17 267);
   --butter: oklch(0.88 0.16 98);
@@ -227,8 +227,8 @@ main { overflow: hidden; }
 .tone-blue { --tone: var(--tone-blue); }
 .tone-purple { --tone: var(--tone-purple); }
 .tone-green { --tone: var(--tone-green); }
-.tone-red { --tone: var(--tone-red); }
-.insight-card.tone-blue, .insight-card.tone-purple, .insight-card.tone-green, .insight-card.tone-red {
+.tone-orange { --tone: var(--tone-orange); }
+.insight-card.tone-blue, .insight-card.tone-purple, .insight-card.tone-green, .insight-card.tone-orange {
   border: 1px solid color-mix(in oklab, var(--tone) 58%, transparent);
   box-shadow: 0 6px 20px color-mix(in oklab, var(--tone) 14%, transparent), 0 3px 12px color-mix(in oklab, var(--foreground) 6%, transparent);
 }
@@ -244,8 +244,10 @@ main { overflow: hidden; }
 .insight-card-name:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; border-radius: 3px; }
 .insight-card-profile span { color: var(--muted-foreground); font-size: 12px; line-height: 1.25; }
 .insight-card-open { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; padding: 7px 16px; border: 0; border-radius: 999px; background: var(--foreground); color: var(--background); font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.2s ease, transform 0.15s ease; }
-.insight-card.tone-blue .insight-card-open, .insight-card.tone-purple .insight-card-open, .insight-card.tone-green .insight-card-open, .insight-card.tone-red .insight-card-open { background: var(--tone); color: var(--on-accent); }
-.insight-card.tone-blue .insight-card-open:hover, .insight-card.tone-purple .insight-card-open:hover, .insight-card.tone-green .insight-card-open:hover, .insight-card.tone-red .insight-card-open:hover { background: color-mix(in oklab, var(--tone) 84%, #fff); }
+.insight-card.tone-blue .insight-card-open, .insight-card.tone-purple .insight-card-open, .insight-card.tone-green .insight-card-open, .insight-card.tone-orange .insight-card-open { background: var(--tone); color: var(--on-accent); }
+.insight-card.tone-blue .insight-card-open:hover, .insight-card.tone-purple .insight-card-open:hover, .insight-card.tone-green .insight-card-open:hover, .insight-card.tone-orange .insight-card-open:hover { background: color-mix(in oklab, var(--tone) 84%, #fff); }
+.insight-row .insight-card .insight-card-open { background: #000; color: #fff; }
+.insight-row .insight-card .insight-card-open:hover { background: #222; }
 .insight-card-open:active { transform: scale(0.97); }
 .insight-card-divider { width: 100%; height: 1px; margin-top: 10px; background: var(--border); }
 .insight-card-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 18px; text-align: center; }
@@ -555,7 +557,8 @@ main { overflow: hidden; }
 .team-page .team-members .insight-card-profile { margin-top: 8px; }
 .team-page .team-members .insight-card-profile strong { font-size: 17px; }
 .team-page .team-members .insight-card-profile span { font-size: 13px; }
-.team-page .team-members .insight-card-open { padding: 9px 18px; font-size: 12px; }
+.team-page .team-members .insight-card-open { padding: 9px 18px; background: #000; color: #fff; font-size: 12px; }
+.team-page .team-members .insight-card-open:hover { background: #222; }
 .team-card-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
 .team-card-github { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--foreground); transition: background .2s ease, color .2s ease, border-color .2s ease; }
 .team-card-github:hover { border-color: var(--foreground); background: var(--foreground); color: var(--background); }

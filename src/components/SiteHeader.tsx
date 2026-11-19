@@ -26,11 +26,9 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, setLanguage, t } = useI18n();
   const languageRef = useRef<HTMLDetailsElement>(null);
-  const isHomePage = window.location.pathname === "/";
   const homeHref = "/";
   const teamHref = "/team";
   const contactHref = "/contact";
-  const getStartedHref = isHomePage ? "#get-started" : "/#get-started";
   const activeLanguage = languages.find((item) => item.lang === language) ?? defaultLanguage;
   const ActiveFlag = activeLanguage.Flag;
 
@@ -103,7 +101,7 @@ export default function SiteHeader() {
           </div>
         </details>
         <Button asChild size="sm" className="nav-cta">
-          <a href={getStartedHref} onClick={() => setMenuOpen(false)}>{t("Build With Us")}</a>
+          <a href={contactHref} onClick={() => setMenuOpen(false)}>{t("Build With Us")}</a>
         </Button>
       </div>
     </header>

@@ -215,7 +215,7 @@ export default function Work() {
           <p>{t("New projects land here as they go live. If you want in on one — or have something of your own — we answer every message.")}</p>
         </div>
         <Button asChild className="nav-cta">
-          <a href="/#get-started">{t("Build With Us")}</a>
+          <a href="/contact">{t("Build With Us")}</a>
         </Button>
       </section>
 
