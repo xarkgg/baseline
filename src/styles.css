@@ -2,17 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-/* Unageo — one variable file covering every weight the site asks for, so a
-   heading at 800 and a label at 400 come from the same face rather than a
-   synthetic bold. SIL Open Font License 1.1; the licence ships beside it. */
-@font-face {
-  font-family: "Unageo";
-  font-style: normal;
-  font-weight: 300 900;
-  font-display: swap;
-  src: url("./assets/fonts/unageo-var.woff2") format("woff2");
-}
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -75,7 +64,7 @@
   --canopy-width: clamp(56px, 8.2vw, 92px);
   --canopy-depth: clamp(24px, 3.2vw, 36px);
   --orbit-size: 96px;
-  --font-sans: "Unageo", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
